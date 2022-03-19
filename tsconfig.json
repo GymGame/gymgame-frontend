@@ -17,7 +17,7 @@
     "noImplicitThis": true,
     "strictNullChecks": true
   },
-  "include": ["./src", "./scripts", "./tasks"],
+  "include": ["./src", "./scripts", "./tasks", "src/custom.d.ts"],
   "files": ["./hardhat.config.ts"],
   "paths": {
     "@mui/styled-engine": ["./node_modules/@mui/styled-engine-sc"]
