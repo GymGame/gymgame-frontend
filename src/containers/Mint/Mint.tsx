@@ -1,12 +1,12 @@
-import React from "react";
-import Button from "@mui/material/Button";
-import { Web3Provider } from "@ethersproject/providers";
-import { UnsupportedChainIdError, useWeb3React } from "@web3-react/core";
-import useEagerConnect from "../../hooks/useEagerConnect";
-import { injected } from "../../connectors";
-import useEthereumListeners from "../../hooks/useEthereumListeners";
-import { useAppDispatch } from "../../hooks";
-import { createGlobalError, GlobalErrorType } from "../../containers/Error/errorSlice";
+import React from 'react';
+import Button from '@mui/material/Button';
+import { Web3Provider } from '@ethersproject/providers';
+import { UnsupportedChainIdError, useWeb3React } from '@web3-react/core';
+import useEagerConnect from '../../hooks/useEagerConnect';
+import { injected } from '../../connectors';
+import useEthereumListeners from '../../hooks/useEthereumListeners';
+import { useAppDispatch } from '../../hooks';
+import { createGlobalError, GlobalErrorType } from '../../containers/Error/errorSlice';
 
 const AppContent = () => {
   const context = useWeb3React<Web3Provider>();
@@ -33,8 +33,8 @@ const AppContent = () => {
         dispatch(
           createGlobalError({
             type: GlobalErrorType.UnsupportedChain,
-            message: "Please change to Avalanche network to continue!",
-          })
+            message: 'Please change to Avalanche network to continue!',
+          }),
         );
       }
       setActivatingWallet(false);
@@ -51,7 +51,7 @@ const AppContent = () => {
     }
 
     return (
-      <Button variant='contained' onClick={onConnectWallet}>
+      <Button variant="contained" onClick={onConnectWallet}>
         Connect Metamask Wallet
       </Button>
     );

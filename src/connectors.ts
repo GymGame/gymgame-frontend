@@ -1,4 +1,4 @@
-import { InjectedConnector } from "@web3-react/injected-connector";
+import { InjectedConnector } from '@web3-react/injected-connector';
 
 export const RPC_URLS: { [chainId: number]: string } = {
   43114: process.env.AVAX_MAINNET_RPC_URL as string,

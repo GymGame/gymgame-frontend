@@ -1,7 +1,7 @@
-import React from "react";
-import { Container } from "@mui/material";
-import PlaySection from "./components/PlaySection";
-import Screen from "../../components/Screen";
+import React from 'react';
+import { Container } from '@mui/material';
+import PlaySection from './components/PlaySection';
+import Screen from '../../components/Screen';
 
 const Home = () => {
   return (
@@ -9,7 +9,7 @@ const Home = () => {
       <PlaySection />
       <Container
         sx={{
-          height: "100vh",
+          height: '100vh',
         }}
       ></Container>
     </Screen>

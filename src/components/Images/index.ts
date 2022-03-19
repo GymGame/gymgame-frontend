@@ -1,1 +1,1 @@
-export { default as HeroNFTImage } from "./HeroNFTImage";
+export { default as HeroNFTImage } from './HeroNFTImage';

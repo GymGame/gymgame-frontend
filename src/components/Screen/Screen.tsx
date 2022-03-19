@@ -1,6 +1,6 @@
-import { Container } from "@mui/material";
-import React from "react";
-import AppBar from "../AppBar";
+import { Container } from '@mui/material';
+import React from 'react';
+import AppBar from '../AppBar';
 
 type MyProps = {
   children: React.ReactNode;

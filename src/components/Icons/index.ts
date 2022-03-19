@@ -1,1 +1,1 @@
-export { default as ScrollIcon } from "./ScrollIcon";
+export { default as ScrollIcon } from './ScrollIcon';

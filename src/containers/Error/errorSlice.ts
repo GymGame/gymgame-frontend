@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export enum GlobalErrorType {
   General = 1,
@@ -21,12 +21,12 @@ interface GlobalErrorState {
 const initialState: GlobalErrorState = {
   error: {
     type: undefined,
-    message: "",
+    message: '',
   },
 };
 
 const globalErrorsSlice = createSlice({
-  name: "globalErrors",
+  name: 'globalErrors',
   initialState,
   reducers: {
     createGlobalError: (state: GlobalErrorState, action: PayloadAction<GlobalErrorPayload>) => {
@@ -36,7 +36,7 @@ const globalErrorsSlice = createSlice({
     clearGlobalError: (state: GlobalErrorState, action: PayloadAction<{ type: GlobalErrorType }>) => {
       if (state.error?.type === action.payload.type) {
         state.error.type = undefined;
-        state.error.message = "";
+        state.error.message = '';
       }
     },
   },

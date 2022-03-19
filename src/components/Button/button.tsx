@@ -1,5 +1,5 @@
-import React from "react";
-import { Button, styled, ButtonProps as MuiButtonProps } from "@mui/material";
+import React from 'react';
+import { Button, styled, ButtonProps as MuiButtonProps } from '@mui/material';
 
 export type ButtonProps = MuiButtonProps & { children: React.ReactNode };
 

@@ -1,11 +1,11 @@
-import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
-import globalErrorsReducer from "./containers/Error/errorSlice";
+import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
+import globalErrorsReducer from './containers/Error/errorSlice';
 
 export const store = configureStore({
   reducer: {
     globalErrors: globalErrorsReducer,
   },
-  devTools: process.env.NODE_ENV === "development",
+  devTools: process.env.NODE_ENV === 'development',
   middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
 });
 

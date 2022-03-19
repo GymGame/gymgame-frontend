@@ -1,6 +1,6 @@
-import { styled } from "@mui/material/styles";
-import React from "react";
-import { Link } from "react-router-dom";
+import { styled } from '@mui/material/styles';
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 type MyProps = {
   to: string;
@@ -11,7 +11,7 @@ type MyProps = {
 
 const RouterLink = ({ to, children, isActive = false, styles = {} }: MyProps) => {
   const StyledLink = styled(Link)(({ theme }) => ({
-    textDecoration: "none",
+    textDecoration: 'none',
     color: isActive ? theme.palette.text.primary : theme.palette.text.secondary,
     ...styles,
   }));

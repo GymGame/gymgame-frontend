@@ -1,8 +1,8 @@
-import { useWeb3React } from "@web3-react/core";
-import React from "react";
-import { useAppDispatch } from ".";
-import { SUPPORTED_CHAIN_IDS } from "../connectors";
-import { clearGlobalError, createGlobalError, GlobalErrorType } from "../containers/Error/errorSlice";
+import { useWeb3React } from '@web3-react/core';
+import React from 'react';
+import { useAppDispatch } from '.';
+import { SUPPORTED_CHAIN_IDS } from '../connectors';
+import { clearGlobalError, createGlobalError, GlobalErrorType } from '../containers/Error/errorSlice';
 
 const useEthereumListeners = () => {
   const { connector } = useWeb3React();
@@ -13,8 +13,8 @@ const useEthereumListeners = () => {
       dispatch(
         createGlobalError({
           type: GlobalErrorType.UnsupportedChain,
-          message: "Please change to Avalanche network to continue!",
-        })
+          message: 'Please change to Avalanche network to continue!',
+        }),
       );
     }
     if (SUPPORTED_CHAIN_IDS.includes(Number(chainId).toString())) {
@@ -40,8 +40,8 @@ const useEthereumListeners = () => {
           dispatch(
             createGlobalError({
               type: GlobalErrorType.InvalidAccount,
-              message: "Please sign in with account.",
-            })
+              message: 'Please sign in with account.',
+            }),
           );
           return;
         }
@@ -49,20 +49,20 @@ const useEthereumListeners = () => {
           dispatch(
             clearGlobalError({
               type: GlobalErrorType.InvalidAccount,
-            })
+            }),
           );
         }
       };
 
-      ethereum.on("connect", handleConnect);
-      ethereum.on("chainChanged", handleChainChanged);
-      ethereum.on("accountsChanged", handleAccountsChanged);
+      ethereum.on('connect', handleConnect);
+      ethereum.on('chainChanged', handleChainChanged);
+      ethereum.on('accountsChanged', handleAccountsChanged);
 
       return () => {
         if (ethereum.removeListener) {
-          ethereum.removeListener("connect", handleConnect);
-          ethereum.removeListener("chainChanged", handleChainChanged);
-          ethereum.removeListener("accountsChanged", handleAccountsChanged);
+          ethereum.removeListener('connect', handleConnect);
+          ethereum.removeListener('chainChanged', handleChainChanged);
+          ethereum.removeListener('accountsChanged', handleAccountsChanged);
         }
       };
     }

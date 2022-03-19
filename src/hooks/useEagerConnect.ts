@@ -1,6 +1,6 @@
-import { useWeb3React } from "@web3-react/core";
-import React from "react";
-import { injected } from "../connectors";
+import { useWeb3React } from '@web3-react/core';
+import React from 'react';
+import { injected } from '../connectors';
 
 const useEagerConnect = () => {
   const { activate, active } = useWeb3React();

@@ -53,9 +53,14 @@
     "@typechain/ethers-v5": "^9.0.0",
     "@typechain/hardhat": "^4.0.0",
     "@types/styled-components": "^5.1.24",
+    "@typescript-eslint/eslint-plugin": "^5.15.0",
+    "@typescript-eslint/parser": "^5.15.0",
     "babel-plugin-module-resolver": "^4.1.0",
+    "eslint": "^8.11.0",
+    "eslint-config-prettier": "^8.5.0",
     "ethers": "^5.0.0",
     "hardhat": "^2.8.4",
+    "prettier": "^2.6.0",
     "ts-node": "^10.6.0",
     "typechain": "^7.0.0"
   }
