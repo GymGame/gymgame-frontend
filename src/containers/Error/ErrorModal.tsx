@@ -18,7 +18,7 @@ const ErrorModal = () => {
           color: 'white',
         }}
       >
-        <div>Error: {state.error.message}</div>
+        <div>Error1: {state.error.message}</div>
       </Box>
     );
   }
