@@ -1,17 +1,14 @@
 import React from 'react';
-import { Container } from '@mui/material';
 import PlaySection from './components/PlaySection';
 import Screen from '../../components/Screen';
-
+import MeetTheGymJunkieSection from './components/MeetTheGymJunkieSection';
+import HowDoIGetBigSection from './components/HowDoIGetBigSection';
 const Home = () => {
   return (
     <Screen>
       <PlaySection />
-      <Container
-        sx={{
-          height: '100vh',
-        }}
-      ></Container>
+      <MeetTheGymJunkieSection />
+      <HowDoIGetBigSection />
     </Screen>
   );
 };

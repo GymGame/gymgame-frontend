@@ -2,13 +2,13 @@ import React from 'react';
 import { Container, Box, Typography } from '@mui/material';
 
 import HeroBackgroundSvg from '../../../assets/svgs/heroBg.svg';
-import { HeroNFTImage } from '../../../components/Images';
-import PlayButton from '../../../components/Button/PlayButton';
+import Image from '../../../components/Image';
+import { PlayButton } from '../../../components/Button';
 import { ScrollIcon } from '../../../components/Icons';
 
 const PlaySection = () => {
   return (
-    <Container maxWidth={false}>
+    <Container sx={{ marginBottom: '7rem' }}>
       <Box
         sx={{
           borderRadius: '2rem 2rem 0 0',
@@ -36,18 +36,35 @@ const PlaySection = () => {
             zIndex: '1',
           }}
         >
-          <HeroNFTImage
+          <Image
             styles={{
               width: '10rem',
               height: '10rem',
               marginBottom: '1rem',
             }}
+            imageName="hero-icon"
+            altText="Hero Icon Image"
           />
-          <Typography variant="h1" sx={{ color: 'white' }}>
+          <Typography
+            variant="h1"
+            sx={{
+              //
+              color: 'white',
+              fontFamily: 'Helvetica Pro Outlined',
+            }}
+          >
             Lorem ipsum
           </Typography>
           <br />
-          <Typography variant="h1" sx={{ color: 'white' }}>
+          <Typography
+            variant="h1"
+            sx={{
+              //
+              color: 'white',
+              fontFamily: 'Helvetica Pro',
+              fontWeight: 'bold',
+            }}
+          >
             dolar loes.
           </Typography>
           <PlayButton

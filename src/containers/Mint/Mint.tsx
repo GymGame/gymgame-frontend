@@ -41,21 +41,21 @@ const AppContent = () => {
     });
   };
 
-  const renderConnectComponent = () => {
-    if (activatingWallet) {
-      return <div>Loading...</div>;
-    }
+  // const renderConnectComponent = () => {
+  if (activatingWallet) {
+    return <div>Loading...</div>;
+  }
 
-    if (connector && account) {
-      return <div>{`${account.substring(0, 6)}...${account.substring(account.length - 4)}`}</div>;
-    }
+  if (connector && account) {
+    return <div>{`${account.substring(0, 6)}...${account.substring(account.length - 4)}`}</div>;
+  }
 
-    return (
-      <Button variant="contained" onClick={onConnectWallet}>
-        Connect Metamask Wallet
-      </Button>
-    );
-  };
+  return (
+    <Button variant="contained" onClick={onConnectWallet}>
+      Connect Metamask Wallet
+    </Button>
+  );
+  // };
 };
 
 export default AppContent;

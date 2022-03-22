@@ -35,6 +35,9 @@ const theme: Theme = createTheme({
       tertiary: '#5B5B5B',
     },
   },
+  typography: {
+    fontFamily: 'Helvetica, sans-serif',
+  },
   components: {
     MuiButton: {
       variants: [
@@ -46,14 +49,43 @@ const theme: Theme = createTheme({
             padding: '.6rem 1.6rem',
             position: 'relative',
             zIndex: '0',
-
+            border: 'none',
             '&:before': {
               content: '""',
               position: 'absolute',
               zIndex: '-1',
               inset: 0,
               borderRadius: '2rem',
-              padding: '.17rem',
+              padding: '.1rem',
+              backgroundImage: theme.palette.gradient.main,
+              mask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+              maskComposite: 'exclude',
+              WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+              WebkitMaskComposite: 'xor',
+            },
+            '&:hover': {
+              border: 'none',
+            },
+          }),
+        },
+        {
+          props: {
+            variant: 'contained',
+          },
+          style: ({ theme }) => ({
+            padding: '.6rem 1.6rem',
+            position: 'relative',
+            zIndex: '0',
+            backgroundImage: theme.palette.gradient.dark,
+            borderRadius: '2.5rem',
+            textTransform: 'none',
+            '&:before': {
+              content: '""',
+              position: 'absolute',
+              zIndex: '-1',
+              inset: 0,
+              borderRadius: '2rem',
+              padding: '.1rem',
               backgroundImage: theme.palette.gradient.main,
               mask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
               maskComposite: 'exclude',

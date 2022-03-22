@@ -44,7 +44,7 @@ const AppBar = () => {
         </Box>
         <Button variant="outlined" size="small">
           <Typography sx={{ color: (theme) => theme.palette.text.primary, textTransform: 'none', fontSize: '1rem' }}>
-            Buy $GAINZ
+            Buy GAINS
           </Typography>
         </Button>
       </Toolbar>

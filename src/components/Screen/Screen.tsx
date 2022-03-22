@@ -8,7 +8,9 @@ type MyProps = {
 const Screen = ({ children }: MyProps) => {
   return (
     <Container //
-      sx={{ backgroundColor: (theme) => theme.palette.background.default }}
+      sx={{
+        backgroundColor: (theme) => theme.palette.background.default,
+      }}
       disableGutters={true}
       maxWidth={false}
     >
