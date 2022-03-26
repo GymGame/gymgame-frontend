@@ -10,7 +10,7 @@ import { createGlobalError, GlobalErrorType } from '../../containers/Error/error
 
 const AppContent = () => {
   const context = useWeb3React<Web3Provider>();
-  const { connector,  account, activate, /*deactivate, active, error, library, chainId*/ } = context;
+  const { connector, account, activate /*deactivate, active, error, library, chainId*/ } = context;
   const dispatch = useAppDispatch();
 
   const [activatingWallet, setActivatingWallet] = React.useState<boolean>(false);
