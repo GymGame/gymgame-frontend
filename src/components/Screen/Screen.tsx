@@ -1,11 +1,8 @@
 import { Container } from '@mui/material';
-import React from 'react';
 import AppBar from '../AppBar';
+import { Outlet } from 'react-router-dom';
 
-type MyProps = {
-  children: React.ReactNode;
-};
-const Screen = ({ children }: MyProps) => {
+const Screen = () => {
   return (
     <Container //
       sx={{
@@ -15,7 +12,7 @@ const Screen = ({ children }: MyProps) => {
       maxWidth={false}
     >
       <AppBar />
-      {children}
+      <Outlet />
     </Container>
   );
 };
