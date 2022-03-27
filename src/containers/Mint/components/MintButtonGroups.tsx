@@ -10,6 +10,7 @@ const styles = {
     left: 0,
     right: 0,
     bottom: 0,
+    width: '100%',
   },
   boxPlusSubtract: {
     display: 'flex',
