@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from '@mui/material/Button';
+//import Button from '@mui/material/Button';
 import { Web3Provider } from '@ethersproject/providers';
 import { UnsupportedChainIdError, useWeb3React } from '@web3-react/core';
 import useEagerConnect from '../../hooks/useEagerConnect';
@@ -7,6 +7,7 @@ import { injected } from '../../connectors';
 import useEthereumListeners from '../../hooks/useEthereumListeners';
 import { useAppDispatch } from '../../hooks';
 import { createGlobalError, GlobalErrorType } from '../../containers/Error/errorSlice';
+import MintMainContent from './components/MintMainContent';
 
 const AppContent = () => {
   const context = useWeb3React<Web3Provider>();
@@ -41,6 +42,8 @@ const AppContent = () => {
     });
   };
 
+  console.log(onConnectWallet);
+
   // const renderConnectComponent = () => {
   if (activatingWallet) {
     return <div>Loading...</div>;
@@ -50,12 +53,14 @@ const AppContent = () => {
     return <div>{`${account.substring(0, 6)}...${account.substring(account.length - 4)}`}</div>;
   }
 
-  return (
-    <Button variant="contained" onClick={onConnectWallet}>
-      Connect Metamask Wallet
-    </Button>
-  );
+  // return (
+  //   <Button variant="contained" onClick={onConnectWallet}>
+  //     Connect Metamask Wallet
+  //   </Button>
+  // );
   // };
+
+  return <MintMainContent />;
 };
 
 export default AppContent;

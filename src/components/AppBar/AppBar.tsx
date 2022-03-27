@@ -35,11 +35,11 @@ const AppBar = () => {
             fontSize: '1rem',
           }}
         >
-          <RouterLink isActive={true} to="#">
+          <RouterLink isActive={true} to="/">
             Home
           </RouterLink>
           <RouterLink to="#">Play</RouterLink>
-          <RouterLink to="#">Mint</RouterLink>
+          <RouterLink to="mint">Mint</RouterLink>
           <RouterLink to="#">Marketplace</RouterLink>
         </Box>
         <Button variant="outlined" size="small">
