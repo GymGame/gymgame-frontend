@@ -7,6 +7,7 @@ const styles = {
   containerBox: { width: '100%', backgroundColor: colors.grey_2, borderRadius: '16px', padding: '32px', mb: '2rem' },
   flexRow: { display: 'flex', flexDirection: 'row' },
   flexColumnAuto: { display: 'flex', flexDirection: 'column', flexBasis: '100%', flex: 1 },
+  // flexColumnAuto: { display: 'flex', flexDirection: 'column', width: '50%' },
   typographyOne: { color: colors.grey_1, mb: '16px' },
 };
 
