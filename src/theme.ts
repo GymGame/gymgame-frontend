@@ -19,6 +19,12 @@ declare module '@mui/material/styles' {
   }
 }
 
+export const colors = {
+  grey_1: '#adadad',
+  grey_2: '#2a2a2a',
+  grey_3: '#3d3d3d',
+};
+
 const theme: Theme = createTheme({
   palette: {
     gradient: {
