@@ -20,11 +20,16 @@ const MintAlready = ({ mintedNumber = 0, totalNumber = 10000 }: MintAlreadyProps
       <LinearProgress
         variant="determinate"
         value={Math.round((mintedNumber / totalNumber) * 100)}
-        sx={
-          {
-            //backgroundImage: 'linear-gradient(to right, #33daff 0%, #0047ff 100%, #0047ff 100%)'
-          }
-        }
+        sx={{
+          backgroundColor: '#3d3d3d',
+          height: '24px',
+          borderRadius: '24px',
+
+          '& .MuiLinearProgress-barColorPrimary': {
+            backgroundImage: 'linear-gradient(to right, #33daff 0%, #0047ff 100%, #0047ff 100%)',
+            borderRadius: '24px',
+          },
+        }}
       />
     </Box>
   );
