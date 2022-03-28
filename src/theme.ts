@@ -43,9 +43,45 @@ const theme: Theme = createTheme({
     },
   },
   typography: {
+    fontSize: 16, //browsers will set 16px as root by default
     fontFamily: 'Helvetica, sans-serif',
+    h1: {
+      fontSize: '6rem', //96px
+      fontFamily: 'Helvetica Pro',
+      fontWeight: 'bold',
+    },
+    h2: {
+      fontSize: '4rem', //64px
+      fontFamily: 'Helvetica Pro',
+    },
+    h3: {
+      fontSize: '3rem', //48px
+      fontFamily: 'Helvetica Pro',
+    },
+    body1: {
+      fontSize: '1.5rem', //25px
+      fontFamily: 'Helvetica Regular',
+    },
+    body2: {
+      fontSize: '1.125rem', //18px
+      fontFamily: 'Helvetica Medium',
+    },
+    caption: {
+      fontSize: '0.75rem', //12px
+      fontFamily: 'Helvetica Medium',
+    },
   },
   components: {
+    MuiPaper: {
+      defaultProps: {
+        elevation: 0,
+      },
+      styleOverrides: {
+        root: {
+          borderRadius: '1rem',
+        },
+      },
+    },
     MuiButton: {
       variants: [
         {
@@ -63,7 +99,7 @@ const theme: Theme = createTheme({
               zIndex: '-1',
               inset: 0,
               borderRadius: '2rem',
-              padding: '.1rem',
+              padding: '2px',
               backgroundImage: theme.palette.gradient.main,
               mask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
               maskComposite: 'exclude',
@@ -92,7 +128,7 @@ const theme: Theme = createTheme({
               zIndex: '-1',
               inset: 0,
               borderRadius: '2rem',
-              padding: '.1rem',
+              padding: '2px',
               backgroundImage: theme.palette.gradient.main,
               mask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
               maskComposite: 'exclude',

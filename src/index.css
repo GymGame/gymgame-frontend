@@ -5,8 +5,13 @@
 
 /* will need to improve this if we're supporting multiple font weights and types */
 @font-face {
-  font-family: 'Helvetica';
+  font-family: 'Helvetica Regular';
   src: url('./assets/fonts/helvetica/HelveticaNeueRegular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Helvetica Medium';
+  src: url('./assets/fonts/helvetica/HelveticaNeueMedium.otf') format('openType');
 }
 
 @font-face {

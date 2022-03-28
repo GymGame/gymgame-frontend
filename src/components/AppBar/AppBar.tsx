@@ -32,7 +32,7 @@ const AppBar = () => {
             flexDirection: 'row',
             justifyContent: 'space-between',
             gap: '2.3rem',
-            fontSize: '1rem',
+            fontSize: '1.125rem',
           }}
         >
           <RouterLink isActive={true} to="/">
@@ -43,7 +43,7 @@ const AppBar = () => {
           <RouterLink to="#">Marketplace</RouterLink>
         </Box>
         <Button variant="outlined" size="small">
-          <Typography sx={{ color: (theme) => theme.palette.text.primary, textTransform: 'none', fontSize: '1rem' }}>
+          <Typography variant="body2" sx={{ color: (theme) => theme.palette.text.primary, textTransform: 'none' }}>
             Buy GAINS
           </Typography>
         </Button>
