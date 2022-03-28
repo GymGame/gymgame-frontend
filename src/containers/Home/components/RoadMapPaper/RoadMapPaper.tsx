@@ -10,7 +10,7 @@ type MyProps = {
 
 const RoadMapPaper = ({ title, children, cardNumber, styles = {} }: MyProps) => {
   const StyledPaper = styled(Paper)({
-    background: `url('/assets/images/roadmap-phase${cardNumber}.png') no-repeat center/cover`,
+    background: `url('/assets/images/backgrounds/roadmap-phase${cardNumber}.png') no-repeat center/cover`,
     height: '34rem',
     width: '30.25rem',
     padding: '1.5rem 2rem',
