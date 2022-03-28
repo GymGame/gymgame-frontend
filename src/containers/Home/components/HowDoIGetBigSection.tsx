@@ -10,6 +10,7 @@ const HowDoIGetBigSection = () => {
         display: 'flex',
         alignItems: 'center',
         flexDirection: 'column',
+        marginBottom: '12rem',
       }}
     >
       <Title variant="h2" textPartOne="How do I" textPartTwo="get big?" />
