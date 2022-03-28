@@ -14,7 +14,7 @@ const MintMainContent = () => {
         Mint
       </Typography>
       <MintAlready mintedNumber={4322} totalNumber={10000} />
-      <MintWhiteList />
+      <MintWhiteList totalPrice={7.5} singlePrice={2.5} initialNumber={3} />
     </Box>
   );
 };
