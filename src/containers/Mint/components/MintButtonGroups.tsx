@@ -1,5 +1,9 @@
 import React from 'react';
-import { Box, Button } from '@mui/material';
+import { Box, Button, SvgIcon } from '@mui/material';
+import { styled } from '@mui/material/styles';
+import AddIcon from '@mui/icons-material/Add';
+import RemoveIcon from '@mui/icons-material/Remove';
+import { colors } from '../../../theme';
 
 const styles = {
   flexRow: { display: 'flex', flexDirection: 'row' },
@@ -41,6 +45,30 @@ const styles = {
   },
 };
 
+const iconWrapper = (icon: typeof SvgIcon) => {
+  return styled(icon)(({ theme }) => ({
+    color: colors.white,
+    [theme.breakpoints.down('sm')]: {
+      fontSize: 15,
+    },
+    [theme.breakpoints.up('sm')]: {
+      fontSize: 30,
+    },
+    [theme.breakpoints.up('md')]: {
+      fontSize: 60,
+    },
+    [theme.breakpoints.up('lg')]: {
+      fontSize: 100,
+    },
+    [theme.breakpoints.up('xl')]: {
+      fontSize: 140,
+    },
+  }));
+};
+
+const AddIconWrapper = iconWrapper(AddIcon);
+const RemoveIconWrapper = iconWrapper(RemoveIcon);
+
 const MintButtonGroups = () => {
   return (
     <Box sx={styles.flexRow}>
@@ -74,7 +102,7 @@ const MintButtonGroups = () => {
               ...styles.buttonSmall,
             }}
           >
-            +
+            <AddIconWrapper />
           </Button>
         </Box>
         <Box
@@ -90,7 +118,7 @@ const MintButtonGroups = () => {
               ...styles.buttonSmall,
             }}
           >
-            -
+            <RemoveIconWrapper />
           </Button>
         </Box>
       </Box>
