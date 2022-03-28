@@ -35,9 +35,6 @@ const AppBar = () => {
             fontSize: '1.125rem',
           }}
         >
-          <RouterLink isActive={true} to="/">
-            Home
-          </RouterLink>
           <RouterLink to="#">Play</RouterLink>
           <RouterLink to="mint">Mint</RouterLink>
           <RouterLink to="#">Marketplace</RouterLink>
