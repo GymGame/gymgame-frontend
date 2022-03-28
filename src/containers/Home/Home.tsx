@@ -1,6 +1,8 @@
 import PlaySection from './components/PlaySection';
 import MeetTheGymJunkieSection from './components/MeetTheGymJunkieSection';
 import HowDoIGetBigSection from './components/HowDoIGetBigSection';
+import ReadTheWhitePaperSection from './components/ReadTheWhitePaperSection';
+import SeeTheRoadMapSection from './components/SeeTheRoadMapSection';
 
 const Home = () => {
   return (
@@ -8,6 +10,8 @@ const Home = () => {
       <PlaySection />
       <MeetTheGymJunkieSection />
       <HowDoIGetBigSection />
+      <ReadTheWhitePaperSection />
+      <SeeTheRoadMapSection />
     </>
   );
 };

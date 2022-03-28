@@ -13,7 +13,6 @@ const MeetTheGymJunkieSection = () => {
   return (
     <Container
       sx={{
-        // height: '100vh',
         display: 'flex',
         alignItems: 'center',
         flexDirection: 'column',
@@ -21,9 +20,9 @@ const MeetTheGymJunkieSection = () => {
       }}
       maxWidth="md"
     >
-      <Box sx={{ marginBottom: '4rem', width: '40rem' }}>
+      <Box sx={{ marginBottom: '4rem' }}>
         <Title variant="h2" textPartOne="Meet the" textPartTwo="Gym Junkies" />
-        <Typography variant="h5">
+        <Typography variant="body1">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
           magna aliqua.
         </Typography>
@@ -33,7 +32,6 @@ const MeetTheGymJunkieSection = () => {
           background: `url(${CarouselBackgroundSvg}) no-repeat center/cover`,
           height: '34rem',
           width: '55rem',
-          borderRadius: '1.5rem',
         }}
       >
         <Swiper //
@@ -65,15 +63,15 @@ const MeetTheGymJunkieSection = () => {
             />
             <Box>
               <Typography variant="h3">#1000</Typography>
-              <Typography variant="h5">Skin: Light</Typography>
-              <Typography variant="h5">Hat: Blah</Typography>
-              <Typography variant="h5">Eyes: Blah</Typography>
-              <Typography variant="h5">Shirt: Blah</Typography>
+              <Typography variant="body1">Skin: Light</Typography>
+              <Typography variant="body1">Hat: Blah</Typography>
+              <Typography variant="body1">Eyes: Blah</Typography>
+              <Typography variant="body1">Shirt: Blah</Typography>
               <br />
-              <Typography variant="h5">Strength: 94</Typography>
-              <Typography variant="h5">Endurance: 40</Typography>
-              <Typography variant="h5">Agility: 88</Typography>
-              <Typography variant="h5">Weight: 110kg / 242 lbs</Typography>
+              <Typography variant="body1">Strength: 94</Typography>
+              <Typography variant="body1">Endurance: 40</Typography>
+              <Typography variant="body1">Agility: 88</Typography>
+              <Typography variant="body1">Weight: 110kg / 242 lbs</Typography>
             </Box>
           </SwiperSlide>
           <SwiperSlide
@@ -93,15 +91,15 @@ const MeetTheGymJunkieSection = () => {
             />
             <Box>
               <Typography variant="h3">#2000</Typography>
-              <Typography variant="h5">Skin: Light</Typography>
-              <Typography variant="h5">Hat: Blah</Typography>
-              <Typography variant="h5">Eyes: Blah</Typography>
-              <Typography variant="h5">Shirt: Blah</Typography>
+              <Typography variant="body1">Skin: Light</Typography>
+              <Typography variant="body1">Hat: Blah</Typography>
+              <Typography variant="body1">Eyes: Blah</Typography>
+              <Typography variant="body1">Shirt: Blah</Typography>
               <br />
-              <Typography variant="h5">Strength: 94</Typography>
-              <Typography variant="h5">Endurance: 40</Typography>
-              <Typography variant="h5">Agility: 88</Typography>
-              <Typography variant="h5">Weight: 110kg / 242 lbs</Typography>
+              <Typography variant="body1">Strength: 94</Typography>
+              <Typography variant="body1">Endurance: 40</Typography>
+              <Typography variant="body1">Agility: 88</Typography>
+              <Typography variant="body1">Weight: 110kg / 242 lbs</Typography>
             </Box>
           </SwiperSlide>
           <SwiperSlide
@@ -121,15 +119,15 @@ const MeetTheGymJunkieSection = () => {
             />
             <Box>
               <Typography variant="h3">#3000</Typography>
-              <Typography variant="h5">Skin: Light</Typography>
-              <Typography variant="h5">Hat: Blah</Typography>
-              <Typography variant="h5">Eyes: Blah</Typography>
-              <Typography variant="h5">Shirt: Blah</Typography>
+              <Typography variant="body1">Skin: Light</Typography>
+              <Typography variant="body1">Hat: Blah</Typography>
+              <Typography variant="body1">Eyes: Blah</Typography>
+              <Typography variant="body1">Shirt: Blah</Typography>
               <br />
-              <Typography variant="h5">Strength: 94</Typography>
-              <Typography variant="h5">Endurance: 40</Typography>
-              <Typography variant="h5">Agility: 88</Typography>
-              <Typography variant="h5">Weight: 110kg / 242 lbs</Typography>
+              <Typography variant="body1">Strength: 94</Typography>
+              <Typography variant="body1">Endurance: 40</Typography>
+              <Typography variant="body1">Agility: 88</Typography>
+              <Typography variant="body1">Weight: 110kg / 242 lbs</Typography>
             </Box>
           </SwiperSlide>
         </Swiper>

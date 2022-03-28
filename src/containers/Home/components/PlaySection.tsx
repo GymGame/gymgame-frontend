@@ -8,7 +8,7 @@ import { ScrollIcon } from '../../../components/Icons';
 
 const PlaySection = () => {
   return (
-    <Container sx={{ marginBottom: '7rem' }}>
+    <Container sx={{ marginBottom: '2rem' }}>
       <Box
         sx={{
           borderRadius: '2rem 2rem 0 0',
@@ -49,24 +49,13 @@ const PlaySection = () => {
             variant="h1"
             sx={{
               //
-              color: 'white',
               fontFamily: 'Helvetica Pro Outlined',
             }}
           >
             Lorem ipsum
           </Typography>
           <br />
-          <Typography
-            variant="h1"
-            sx={{
-              //
-              color: 'white',
-              fontFamily: 'Helvetica Pro',
-              fontWeight: 'bold',
-            }}
-          >
-            dolar loes.
-          </Typography>
+          <Typography variant="h1">dolar loes.</Typography>
           <PlayButton
             styles={{
               marginTop: '1.5rem',

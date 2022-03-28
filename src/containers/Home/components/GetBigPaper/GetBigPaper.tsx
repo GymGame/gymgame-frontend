@@ -12,31 +12,34 @@ type MyProps = {
 const GetBigPaper = ({ title, body, image, altText }: MyProps) => {
   return (
     <Paper
-      elevation={0}
-      sx={{ padding: '2rem 5rem 2.5rem 1.5rem', borderRadius: '2rem', display: 'flex', marginBottom: '2.5rem' }}
+      sx={{
+        display: 'flex',
+        marginBottom: '2.5rem',
+        width: '90%',
+        padding: '2rem 5rem 2.5rem 2rem',
+      }}
     >
       <Image
         imageName={image}
         altText={altText}
         styles={{
-          height: '11.7rem',
-          width: '11.7rem',
-          borderRadius: '2rem',
+          height: '14rem',
+          width: '14rem',
+          borderRadius: '1.5rem',
         }}
       />
       <Box>
         <Typography
           sx={{
             marginBottom: '1rem',
-            width: '70%',
             fontFamily: 'Helvetica Pro Outlined',
             color: (theme) => theme.palette.text.tertiary,
           }}
-          variant="h2"
+          variant="h1"
         >
           {title}
         </Typography>
-        <Typography variant="h5">{body}</Typography>
+        <Typography variant="body1">{body}</Typography>
       </Box>
     </Paper>
   );
