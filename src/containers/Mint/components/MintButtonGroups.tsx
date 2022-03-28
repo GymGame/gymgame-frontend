@@ -5,6 +5,10 @@ import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import { colors } from '../../../theme';
 
+export type MintButtonGroupsProps = {
+  initialNumber: number;
+};
+
 const styles = {
   flexRow: { display: 'flex', flexDirection: 'row' },
   boxRelative: { position: 'relative', '&:before': { content: '""', display: 'block', paddingTop: '100%' } },
@@ -69,7 +73,7 @@ const iconWrapper = (icon: typeof SvgIcon) => {
 const AddIconWrapper = iconWrapper(AddIcon);
 const RemoveIconWrapper = iconWrapper(RemoveIcon);
 
-const MintButtonGroups = () => {
+const MintButtonGroups = ({ initialNumber }: MintButtonGroupsProps) => {
   return (
     <Box sx={styles.flexRow}>
       <Box
@@ -85,7 +89,7 @@ const MintButtonGroups = () => {
             ...styles.buttonLarge,
           }}
         >
-          3
+          {initialNumber}
         </Button>
       </Box>
       <Box sx={styles.boxPlusSubtract}>

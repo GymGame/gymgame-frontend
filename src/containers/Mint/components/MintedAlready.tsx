@@ -26,7 +26,7 @@ const styles = {
 const MintAlready = ({ mintedNumber = 0, totalNumber = 10000 }: MintAlreadyProps) => {
   return (
     <Box sx={styles.containerBox}>
-      <Typography variant="h6" component="div" sx={styles.typographyOne}>
+      <Typography variant="h5" component="div" sx={styles.typographyOne}>
         Number of Gen0 Gym Junkies already minted
       </Typography>
       <Typography variant="h6" component="div" sx={styles.typographyTwo}>
