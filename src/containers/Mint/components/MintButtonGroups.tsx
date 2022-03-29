@@ -7,6 +7,8 @@ import { colors } from '../../../theme';
 
 export type MintButtonGroupsProps = {
   initialNumber: number;
+  handleAdd: () => void;
+  handleRemove: () => void;
 };
 
 const styles = {
@@ -64,7 +66,7 @@ const iconWrapper = (icon: typeof SvgIcon) => {
 const AddIconWrapper = iconWrapper(AddIcon);
 const RemoveIconWrapper = iconWrapper(RemoveIcon);
 
-const MintButtonGroups = ({ initialNumber }: MintButtonGroupsProps) => {
+const MintButtonGroups = ({ initialNumber, handleAdd, handleRemove }: MintButtonGroupsProps) => {
   return (
     <Box sx={styles.flexRow}>
       <Box
@@ -96,7 +98,7 @@ const MintButtonGroups = ({ initialNumber }: MintButtonGroupsProps) => {
               ...styles.buttonAbsolute,
             }}
           >
-            <AddIconWrapper />
+            <AddIconWrapper onClick={handleAdd} />
           </Button>
         </Box>
         <Box
@@ -111,7 +113,7 @@ const MintButtonGroups = ({ initialNumber }: MintButtonGroupsProps) => {
               ...styles.buttonAbsolute,
             }}
           >
-            <RemoveIconWrapper />
+            <RemoveIconWrapper onClick={handleRemove} />
           </Button>
         </Box>
       </Box>

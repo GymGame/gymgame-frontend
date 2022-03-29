@@ -35,9 +35,17 @@ export type MintWhiteListProps = {
   singlePrice?: number;
   totalPrice: number;
   initialNumber?: number;
+  handleAdd: () => void;
+  handleRemove: () => void;
 };
 
-const MintWhiteList = ({ singlePrice = 2.5, totalPrice, initialNumber = 3 }: MintWhiteListProps) => {
+const MintWhiteList = ({
+  singlePrice = 2.5,
+  totalPrice,
+  initialNumber = 3,
+  handleAdd,
+  handleRemove,
+}: MintWhiteListProps) => {
   return (
     <Box sx={styles.containerBox}>
       <Typography variant="h3" component="div" gutterBottom>
@@ -48,7 +56,7 @@ const MintWhiteList = ({ singlePrice = 2.5, totalPrice, initialNumber = 3 }: Min
           <Typography variant="h5" component="div" sx={styles.typographyOne}>
             Quantity to mint
           </Typography>
-          <MintButtonGroups initialNumber={initialNumber} />
+          <MintButtonGroups initialNumber={initialNumber} handleAdd={handleAdd} handleRemove={handleRemove} />
         </Box>
         <Box sx={styles.flexColumnAuto}>
           <Box sx={styles.flexGrowOne}>
