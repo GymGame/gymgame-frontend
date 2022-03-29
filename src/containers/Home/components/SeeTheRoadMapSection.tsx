@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Container, Paper, Typography } from '@mui/material';
+import { Box, Container, Typography } from '@mui/material';
 import Title from '../../../components/Title';
 import RoadMapPaper from './RoadMapPaper';
 

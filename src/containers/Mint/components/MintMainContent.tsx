@@ -4,7 +4,13 @@ import MintAlready from './MintedAlready';
 import MintWhiteList from './MintWhiteList';
 
 const styles = {
-  containerBox: { m: '1rem 20vw 1rem 15vw', display: 'flex', flexDirection: 'column' },
+  containerBox: {
+    // m: '1rem 20vw 1rem 15vw'
+    m: '1rem auto',
+    maxWidth: '900px',
+    display: 'flex',
+    flexDirection: 'column',
+  },
 };
 
 const MintMainContent = () => {
