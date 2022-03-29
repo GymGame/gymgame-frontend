@@ -10,6 +10,7 @@ const AppContent = () => {
         <Route path="/" element={<Screen />}>
           <Route index element={<Home />} />
           <Route path="/mint" element={<Mint />} />
+          <Route path="/mint/:state" element={<Mint />} />
         </Route>
       </Routes>
     </BrowserRouter>
