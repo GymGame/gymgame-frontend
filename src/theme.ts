@@ -24,6 +24,7 @@ export const colors = {
   grey_2: '#2a2a2a',
   grey_3: '#3d3d3d',
   white: '#ffffff',
+  grey_5: '#5b5b5b',
 };
 
 const theme: Theme = createTheme({

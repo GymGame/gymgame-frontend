@@ -36,10 +36,7 @@ const styles = {
     minWidth: 0,
   },
   buttonLarge: {
-    fontSize: '7vw',
-  },
-  buttonSmall: {
-    fontSize: '4vw',
+    fontSize: '5vw',
   },
   boxLarge: {
     width: '40%',
@@ -60,12 +57,6 @@ const iconWrapper = (icon: typeof SvgIcon) => {
     },
     [theme.breakpoints.up('md')]: {
       fontSize: 60,
-    },
-    [theme.breakpoints.up('lg')]: {
-      fontSize: 100,
-    },
-    [theme.breakpoints.up('xl')]: {
-      fontSize: 140,
     },
   }));
 };
@@ -103,7 +94,6 @@ const MintButtonGroups = ({ initialNumber }: MintButtonGroupsProps) => {
             sx={{
               ...styles.buttonCommon,
               ...styles.buttonAbsolute,
-              ...styles.buttonSmall,
             }}
           >
             <AddIconWrapper />
@@ -119,7 +109,6 @@ const MintButtonGroups = ({ initialNumber }: MintButtonGroupsProps) => {
             sx={{
               ...styles.buttonCommon,
               ...styles.buttonAbsolute,
-              ...styles.buttonSmall,
             }}
           >
             <RemoveIconWrapper />
