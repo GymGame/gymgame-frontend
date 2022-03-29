@@ -1,7 +1,5 @@
 import React from 'react';
-import { Box, LinearProgress, Typography } from '@mui/material';
-import { convertNumberToString } from '../helper';
-import { colors } from '../../../theme';
+import { Box } from '@mui/material';
 
 const MintNotReady = () => {
   return <Box>123</Box>;
