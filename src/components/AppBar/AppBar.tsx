@@ -1,8 +1,14 @@
 import React from 'react';
 import { Toolbar, AppBar as MuiAppBar, Box, Typography, Button } from '@mui/material';
 import RouterLink from '../RouterLink';
+import { useNavigate } from 'react-router-dom';
 
 const AppBar = () => {
+  const navigate = useNavigate();
+
+  const navigateToHome = () => {
+    navigate('/');
+  };
   return (
     <MuiAppBar
       sx={{
@@ -21,8 +27,10 @@ const AppBar = () => {
             textShadow: '0 .28rem .86rem rgba(0, 0, 0, 0.25)',
             backgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
+            cursor: 'pointer',
           }}
           variant="h4"
+          onClick={navigateToHome}
         >
           GYMGAME
         </Typography>
