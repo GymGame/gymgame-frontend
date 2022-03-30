@@ -1,9 +1,11 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import globalErrorsReducer from './containers/Error/errorSlice';
+import profileReducer from './slices/profileSlice';
 
 export const store = configureStore({
   reducer: {
     globalErrors: globalErrorsReducer,
+    profile: profileReducer,
   },
   devTools: process.env.NODE_ENV === 'development',
   middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
