@@ -1,66 +1,32 @@
+import { Container, Grid } from '@mui/material';
 import React from 'react';
-//import Button from '@mui/material/Button';
-import { Web3Provider } from '@ethersproject/providers';
-import { UnsupportedChainIdError, useWeb3React } from '@web3-react/core';
-import useEagerConnect from '../../hooks/useEagerConnect';
-import { injected } from '../../connectors';
-import useEthereumListeners from '../../hooks/useEthereumListeners';
-import { useAppDispatch } from '../../hooks';
-import { createGlobalError, GlobalErrorType } from '../../containers/Error/errorSlice';
+import WalletBalance from '../../components/WalletBalance';
+import { useAppSelector } from '../../hooks';
 import MintMainContent from './components/MintMainContent';
 
 const AppContent = () => {
-  const context = useWeb3React<Web3Provider>();
-  const { connector, account, activate /*deactivate, active, error, library, chainId*/ } = context;
-  const dispatch = useAppDispatch();
+  const profile = useAppSelector((state) => state.profile);
 
-  const [activatingWallet, setActivatingWallet] = React.useState<boolean>(false);
-
-  React.useEffect(() => {
-    if (activatingWallet && connector) {
-      setActivatingWallet(false);
-    }
-  }, [activatingWallet, connector]);
-
-  //Eagerly connect to ethereum provider if it exists and has already been granted access
-  useEagerConnect();
-
-  useEthereumListeners();
-
-  const onConnectWallet = () => {
-    setActivatingWallet(true);
-    activate(injected, (error) => {
-      if (error instanceof UnsupportedChainIdError) {
-        dispatch(
-          createGlobalError({
-            type: GlobalErrorType.UnsupportedChain,
-            message: 'Please change to Avalanche network to continue!',
-          }),
-        );
-      }
-      setActivatingWallet(false);
-    });
-  };
-
-  console.log(onConnectWallet);
-
-  // const renderConnectComponent = () => {
-  if (activatingWallet) {
-    return <div>Loading...</div>;
-  }
-
-  if (connector && account) {
-    return <div>{`${account.substring(0, 6)}...${account.substring(account.length - 4)}`}</div>;
-  }
-
-  // return (
-  //   <Button variant="contained" onClick={onConnectWallet}>
-  //     Connect Metamask Wallet
-  //   </Button>
-  // );
-  // };
-
-  return <MintMainContent />;
+  return (
+    <Container maxWidth={false}>
+      <Grid container>
+        <Grid item md={9} lg={8} justifyContent="center">
+          <MintMainContent />
+        </Grid>
+        <Grid sx={{ display: 'flex', justifyContent: 'end' }} item sm={12} md={3} lg={4}>
+          {profile && profile.address && (
+            <WalletBalance //
+              styles={{ display: 'flex', flexDirection: 'column', alignSelf: 'start' }}
+              address={profile.address}
+              gainsBalance={profile.balances.gains}
+              proteinBalance={profile.balances.protein}
+              avaxBalance={profile.balances.avax}
+            />
+          )}
+        </Grid>
+      </Grid>
+    </Container>
+  );
 };
 
 export default AppContent;

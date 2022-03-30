@@ -1,14 +1,115 @@
 import React from 'react';
 import { Toolbar, AppBar as MuiAppBar, Box, Typography, Button } from '@mui/material';
 import RouterLink from '../RouterLink';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { Web3Provider } from '@ethersproject/providers';
+import { UnsupportedChainIdError, useWeb3React } from '@web3-react/core';
+import useEagerConnect from '../../hooks/useEagerConnect';
+import { injected } from '../../connectors';
+import useEthereumListeners from '../../hooks/useEthereumListeners';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { createGlobalError, GlobalErrorType } from '../../containers/Error/errorSlice';
+import { activatingProfile, setActiveProfile } from '../../slices/profileSlice';
 
 const AppBar = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const isActivating = useAppSelector((state) => state.profile.isActivating);
+
+  const isHomePage = location.pathname === '/';
 
   const navigateToHome = () => {
     navigate('/');
   };
+
+  const context = useWeb3React<Web3Provider>();
+  const { account, activate, deactivate, active, error, library, chainId } = context;
+  const dispatch = useAppDispatch();
+
+  React.useEffect(() => {
+    // debugger;
+    if (active && account && chainId) {
+      dispatch(
+        setActiveProfile({
+          address: account,
+          chainId,
+          balances: {
+            avax: 10,
+            gains: 10,
+            protein: 10,
+          },
+        }),
+      );
+    }
+  }, [active, account, chainId]);
+
+  // React.useEffect(() => {
+  //   if (activatingWallet && connector) {
+  //     setActivatingWallet(false);
+  //   }
+  // }, [activatingWallet, connector]);
+
+  //Eagerly connect to ethereum provider if it exists and has already been granted access
+  useEagerConnect();
+
+  useEthereumListeners();
+
+  const onConnectWallet = () => {
+    dispatch(activatingProfile(true));
+    activate(injected, (error) => {
+      if (error instanceof UnsupportedChainIdError) {
+        dispatch(
+          createGlobalError({
+            type: GlobalErrorType.UnsupportedChain,
+            message: 'Please change to Avalanche network to continue!',
+          }),
+        );
+      }
+      dispatch(activatingProfile(false));
+    });
+  };
+
+  const renderButtonText = () => {
+    if (isHomePage) {
+      return 'Buy GAINS';
+    }
+
+    if (isActivating) {
+      return 'Loading...';
+    }
+
+    if (active) {
+      return `Disconnect`;
+    }
+
+    return 'Connect';
+  };
+
+  const onClickActionButton = () => {
+    if (isHomePage) {
+      alert('Buy token');
+      return;
+    }
+
+    if (active) {
+      dispatch(
+        setActiveProfile({
+          address: undefined,
+          chainId: undefined,
+          balances: {
+            avax: 0,
+            gains: 0,
+            protein: 0,
+          },
+        }),
+      );
+      return deactivate();
+    }
+
+    return onConnectWallet();
+  };
+
   return (
     <MuiAppBar
       sx={{
@@ -47,9 +148,17 @@ const AppBar = () => {
           <RouterLink to="mint">Mint</RouterLink>
           <RouterLink to="#">Marketplace</RouterLink>
         </Box>
-        <Button variant="outlined" size="small">
+        <Button
+          sx={{
+            width: '10rem',
+            height: '3rem',
+          }}
+          variant="outlined"
+          size="small"
+          onClick={onClickActionButton}
+        >
           <Typography variant="body2" sx={{ color: (theme) => theme.palette.text.primary, textTransform: 'none' }}>
-            Buy GAINS
+            {renderButtonText()}
           </Typography>
         </Button>
       </Toolbar>
