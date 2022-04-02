@@ -11,11 +11,13 @@ const styles = {
 type CardProps = {
   title: string;
   children: JSX.Element;
+  onClick?: React.MouseEventHandler<HTMLDivElement>;
 };
 
-const Card = ({ title, children }: CardProps) => {
+const Card = ({ title, children, onClick }: CardProps) => {
   return (
     <Box
+      onClick={onClick}
       sx={{
         display: 'flex',
         flexDirection: 'column',
@@ -24,9 +26,10 @@ const Card = ({ title, children }: CardProps) => {
         width: '40%',
         height: '272px',
         borderRadius: '16px',
+        '&:hover': { cursor: 'pointer' },
       }}
     >
-      {children}
+      <Box sx={{ m: '2rem auto' }}>{children}</Box>
       <Typography variant="h4" component="div">
         {title}
       </Typography>
@@ -41,11 +44,11 @@ const MintNotReady = () => {
         The minting process hasn’t begun yet. Be sure to join our Discord and follow our Twitter for the latest updates.
       </Typography>
       <Box sx={{ display: 'flex', flexDirection: 'row', gap: '1rem' }}>
-        <Card title="Discord">
-          <Discord sx={{ color: colors.white, width: '100%', height: '70%' }} />
+        <Card title="Discord" onClick={() => window.open('https://discord.com/', '_blank')}>
+          <Discord />
         </Card>
-        <Card title="Twitter">
-          <TwitterIcon sx={{ color: colors.white, width: '100%', height: '70%' }} />
+        <Card title="Twitter" onClick={() => window.open('https://twitter.com/', '_blank')}>
+          <TwitterIcon sx={{ color: colors.white, width: '152px', height: '118px' }} />
         </Card>
       </Box>
     </>
