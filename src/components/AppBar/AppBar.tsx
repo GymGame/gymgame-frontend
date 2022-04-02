@@ -9,13 +9,14 @@ import { injected } from '../../connectors';
 import useEthereumListeners from '../../hooks/useEthereumListeners';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { createGlobalError, GlobalErrorType } from '../../containers/Error/errorSlice';
-import { activatingProfile, setActiveProfile } from '../../slices/profileSlice';
+import { setActiveProfile } from '../../slices/profileSlice';
 
 const AppBar = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const isActivating = useAppSelector((state) => state.profile.isActivating);
+  const { address } = useAppSelector((state) => state.profile);
+  const { deactivate } = useWeb3React<Web3Provider>();
 
   const isHomePage = location.pathname === '/';
 
@@ -23,67 +24,14 @@ const AppBar = () => {
     navigate('/');
   };
 
-  const context = useWeb3React<Web3Provider>();
-  const { account, activate, deactivate, active, error, library, chainId } = context;
   const dispatch = useAppDispatch();
-
-  React.useEffect(() => {
-    // debugger;
-    if (active && account && chainId) {
-      dispatch(
-        setActiveProfile({
-          address: account,
-          chainId,
-          balances: {
-            avax: 10,
-            gains: 10,
-            protein: 10,
-          },
-        }),
-      );
-    }
-  }, [active, account, chainId]);
-
-  // React.useEffect(() => {
-  //   if (activatingWallet && connector) {
-  //     setActivatingWallet(false);
-  //   }
-  // }, [activatingWallet, connector]);
-
-  //Eagerly connect to ethereum provider if it exists and has already been granted access
-  useEagerConnect();
-
-  useEthereumListeners();
-
-  const onConnectWallet = () => {
-    dispatch(activatingProfile(true));
-    activate(injected, (error) => {
-      if (error instanceof UnsupportedChainIdError) {
-        dispatch(
-          createGlobalError({
-            type: GlobalErrorType.UnsupportedChain,
-            message: 'Please change to Avalanche network to continue!',
-          }),
-        );
-      }
-      dispatch(activatingProfile(false));
-    });
-  };
 
   const renderButtonText = () => {
     if (isHomePage) {
       return 'Buy GAINS';
     }
 
-    if (isActivating) {
-      return 'Loading...';
-    }
-
-    if (active) {
-      return `Disconnect`;
-    }
-
-    return 'Connect';
+    return `Disconnect`;
   };
 
   const onClickActionButton = () => {
@@ -92,7 +40,7 @@ const AppBar = () => {
       return;
     }
 
-    if (active) {
+    if (address) {
       dispatch(
         setActiveProfile({
           address: undefined,
@@ -104,10 +52,9 @@ const AppBar = () => {
           },
         }),
       );
+
       return deactivate();
     }
-
-    return onConnectWallet();
   };
 
   return (
@@ -129,6 +76,7 @@ const AppBar = () => {
             backgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
             cursor: 'pointer',
+            zIndex: '1400',
           }}
           variant="h4"
           onClick={navigateToHome}
@@ -142,6 +90,7 @@ const AppBar = () => {
             justifyContent: 'space-between',
             gap: '2.3rem',
             fontSize: '1.125rem',
+            zIndex: '1400',
           }}
         >
           <RouterLink to="#">Play</RouterLink>
@@ -152,6 +101,7 @@ const AppBar = () => {
           sx={{
             width: '10rem',
             height: '3rem',
+            opacity: isHomePage || address ? '1' : '0',
           }}
           variant="outlined"
           size="small"

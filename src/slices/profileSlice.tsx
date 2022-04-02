@@ -36,9 +36,6 @@ const profileSlice = createSlice({
   name: 'profile',
   initialState,
   reducers: {
-    activatingProfile: (state: ProfileState, action: PayloadAction<boolean>) => {
-      state.isActivating = action.payload;
-    },
     setActiveProfile: (state: ProfileState, action: PayloadAction<SetActiveProfilePayload>) => {
       state.address = action.payload.address;
       state.isActivating = false;
@@ -50,6 +47,6 @@ const profileSlice = createSlice({
   },
 });
 
-export const { activatingProfile, setActiveProfile } = profileSlice.actions;
+export const { setActiveProfile } = profileSlice.actions;
 
 export default profileSlice.reducer;
