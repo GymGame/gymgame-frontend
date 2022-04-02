@@ -3,12 +3,10 @@ import { Toolbar, AppBar as MuiAppBar, Box, Typography, Button } from '@mui/mate
 import RouterLink from '../RouterLink';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Web3Provider } from '@ethersproject/providers';
-import { UnsupportedChainIdError, useWeb3React } from '@web3-react/core';
-import useEagerConnect from '../../hooks/useEagerConnect';
-import { injected } from '../../connectors';
-import useEthereumListeners from '../../hooks/useEthereumListeners';
+import { useWeb3React } from '@web3-react/core';
+
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { createGlobalError, GlobalErrorType } from '../../containers/Error/errorSlice';
+
 import { setActiveProfile } from '../../slices/profileSlice';
 
 const AppBar = () => {
