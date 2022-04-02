@@ -1,6 +1,7 @@
 import { Container } from '@mui/material';
 import AppBar from '../AppBar';
 import { Outlet } from 'react-router-dom';
+import ConnectWalletDialog from '../ConnectWalletDialog';
 
 const Screen = () => {
   return (
@@ -12,6 +13,7 @@ const Screen = () => {
       maxWidth={false}
     >
       <AppBar />
+      <ConnectWalletDialog />
       <Outlet />
     </Container>
   );

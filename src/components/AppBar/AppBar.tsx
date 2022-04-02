@@ -1,8 +1,62 @@
 import React from 'react';
 import { Toolbar, AppBar as MuiAppBar, Box, Typography, Button } from '@mui/material';
 import RouterLink from '../RouterLink';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { Web3Provider } from '@ethersproject/providers';
+import { UnsupportedChainIdError, useWeb3React } from '@web3-react/core';
+import useEagerConnect from '../../hooks/useEagerConnect';
+import { injected } from '../../connectors';
+import useEthereumListeners from '../../hooks/useEthereumListeners';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { createGlobalError, GlobalErrorType } from '../../containers/Error/errorSlice';
+import { setActiveProfile } from '../../slices/profileSlice';
 
 const AppBar = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const { address } = useAppSelector((state) => state.profile);
+  const { deactivate } = useWeb3React<Web3Provider>();
+
+  const isHomePage = location.pathname === '/';
+
+  const navigateToHome = () => {
+    navigate('/');
+  };
+
+  const dispatch = useAppDispatch();
+
+  const renderButtonText = () => {
+    if (isHomePage) {
+      return 'Buy GAINS';
+    }
+
+    return `Disconnect`;
+  };
+
+  const onClickActionButton = () => {
+    if (isHomePage) {
+      alert('Buy token');
+      return;
+    }
+
+    if (address) {
+      dispatch(
+        setActiveProfile({
+          address: undefined,
+          chainId: undefined,
+          balances: {
+            avax: 0,
+            gains: 0,
+            protein: 0,
+          },
+        }),
+      );
+
+      return deactivate();
+    }
+  };
+
   return (
     <MuiAppBar
       sx={{
@@ -21,8 +75,11 @@ const AppBar = () => {
             textShadow: '0 .28rem .86rem rgba(0, 0, 0, 0.25)',
             backgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
+            cursor: 'pointer',
+            zIndex: '1400',
           }}
           variant="h4"
+          onClick={navigateToHome}
         >
           GYMGAME
         </Typography>
@@ -33,15 +90,25 @@ const AppBar = () => {
             justifyContent: 'space-between',
             gap: '2.3rem',
             fontSize: '1.125rem',
+            zIndex: '1400',
           }}
         >
           <RouterLink to="#">Play</RouterLink>
           <RouterLink to="mint">Mint</RouterLink>
           <RouterLink to="#">Marketplace</RouterLink>
         </Box>
-        <Button variant="outlined" size="small">
+        <Button
+          sx={{
+            width: '10rem',
+            height: '3rem',
+            opacity: isHomePage || address ? '1' : '0',
+          }}
+          variant="outlined"
+          size="small"
+          onClick={onClickActionButton}
+        >
           <Typography variant="body2" sx={{ color: (theme) => theme.palette.text.primary, textTransform: 'none' }}>
-            Buy GAINS
+            {renderButtonText()}
           </Typography>
         </Button>
       </Toolbar>
