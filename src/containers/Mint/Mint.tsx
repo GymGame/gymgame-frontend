@@ -9,11 +9,11 @@ const AppContent = () => {
 
   return (
     <Container maxWidth={false}>
-      <Grid container>
-        <Grid item md={9} lg={8} justifyContent="center">
+      <Grid container columnSpacing={10}>
+        <Grid item md={9} lg={10} justifyContent="center">
           <MintMainContent />
         </Grid>
-        <Grid sx={{ display: 'flex', justifyContent: 'end' }} item sm={12} md={3} lg={4}>
+        <Grid sx={{ display: 'flex', justifyContent: 'end' }} item sm={12} md={3} lg={2}>
           {profile && profile.address && (
             <WalletBalance //
               styles={{ display: 'flex', flexDirection: 'column', alignSelf: 'start' }}
