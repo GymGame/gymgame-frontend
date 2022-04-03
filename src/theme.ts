@@ -3,6 +3,8 @@ import { createTheme, Theme } from '@mui/material/styles';
 type ColorGradients = {
   main: string;
   dark: string;
+  yellow: string;
+  red: string;
 };
 
 declare module '@mui/material/styles' {
@@ -32,6 +34,8 @@ const theme: Theme = createTheme({
     gradient: {
       main: 'linear-gradient(to right, #0ff 0%, #2f8fff 50%, #8349ff 100%)',
       dark: 'linear-gradient(to right, #00807f 0%, #003b80 50%, #290080 100%)',
+      yellow: 'linear-gradient(to left, #ed4420, #fe9a3e 47%, #ffe870)',
+      red: 'linear-gradient(to right, #ff7b1b 0%, #ff1414 50%, #7c0700 100%)',
     },
     background: {
       default: '#212121',

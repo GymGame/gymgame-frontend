@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Typography } from '@mui/material';
+import { Button, CircularProgress, Dialog, DialogActions, DialogContent, DialogTitle, Typography } from '@mui/material';
 import { UnsupportedChainIdError, useWeb3React } from '@web3-react/core';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { useLocation } from 'react-router-dom';
@@ -14,7 +14,6 @@ const ConnectWalletDialog = () => {
   const location = useLocation();
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
-  const isMounted = React.useRef<boolean>(true);
 
   const { address } = useAppSelector((state) => state.profile);
 
@@ -29,25 +28,24 @@ const ConnectWalletDialog = () => {
 
   useEthereumListeners();
 
+  const hasMounted = React.useRef<boolean>(true);
+
   //If address is defined, then we can close the connect wallet dialog
   React.useEffect(() => {
-    //Required to return on first mount; otherwise there's a flickering effect since address is always undefined on mount
-    if (isMounted.current) {
-      isMounted.current = false;
+    // //Required to return on first mount; otherwise there's a flickering effect since address is always undefined on mount
+    if (hasMounted.current) {
+      hasMounted.current = false;
       return;
     }
 
-    setIsOpen(!address);
-  }, [address]);
-
-  React.useEffect(() => {
-    if (address && isLoading && !isOpen) {
+    if (address) {
       setIsLoading(false);
     }
-  }, [isOpen]);
+
+    setIsOpen(!address);
+  }, [address, hasMounted.current]);
 
   React.useEffect(() => {
-    // debugger;
     if (active && account && chainId) {
       dispatch(
         setActiveProfile({
@@ -79,16 +77,12 @@ const ConnectWalletDialog = () => {
   };
 
   const renderDialogAction = () => {
-    if (active) {
-      return null;
-    }
-
     if (isLoading) {
-      return <p>Loading...</p>;
+      return <CircularProgress size="4rem" thickness={2.5} sx={{ color: (theme) => theme.palette.text.primary }} />;
     }
 
     return (
-      <Button onClick={onConnectWallet} sx={{ padding: '1.2rem 2.7rem', marginTop: '2rem' }} variant="contained">
+      <Button onClick={onConnectWallet} sx={{ padding: '1.2rem 2.7rem', opacity: active ? 0 : 1 }} variant="contained">
         Connect Wallet
       </Button>
     );
@@ -123,7 +117,7 @@ const ConnectWalletDialog = () => {
       >
         WALLET REQUIRED
       </DialogTitle>
-      <DialogContent>
+      <DialogContent sx={{ mb: '1.5rem' }}>
         <Typography variant="body1">You need to connect your wallet to enter GymGame</Typography>
       </DialogContent>
       <DialogActions>{renderDialogAction()}</DialogActions>

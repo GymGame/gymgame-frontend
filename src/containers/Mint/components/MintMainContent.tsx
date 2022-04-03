@@ -1,18 +1,9 @@
 import React from 'react';
-import { Box, Typography } from '@mui/material';
+import { Box, Container, Typography } from '@mui/material';
 import MintAlready from './MintedAlready';
 import MintWhiteList from './MintWhiteList';
 import { useParams } from 'react-router-dom';
 import MintNotReady from './MintNotReady';
-
-const styles = {
-  containerBox: {
-    m: '1rem auto',
-    maxWidth: '900px',
-    display: 'flex',
-    flexDirection: 'column',
-  },
-};
 
 export type routeParams = {
   state: string;
@@ -31,7 +22,15 @@ const MintMainContent = () => {
   };
 
   return (
-    <Box sx={styles.containerBox}>
+    <Container
+      disableGutters
+      maxWidth="lg"
+      sx={{
+        m: '1rem auto',
+        display: 'flex',
+        flexDirection: 'column',
+      }}
+    >
       <Typography variant="h1" component="div" gutterBottom>
         Mint
       </Typography>
@@ -49,7 +48,7 @@ const MintMainContent = () => {
           />
         </>
       )}
-    </Box>
+    </Container>
   );
 };
 

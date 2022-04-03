@@ -7,8 +7,11 @@ const AppContent = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Screen />}>
+        <Route path="/" element={<Screen requiresWalletConnect={false} />}>
           <Route index element={<Home />} />
+        </Route>
+
+        <Route path="/" element={<Screen />}>
           <Route path="/mint" element={<Mint />} />
           <Route path="/mint/:state" element={<Mint />} />
         </Route>

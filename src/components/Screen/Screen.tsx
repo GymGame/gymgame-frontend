@@ -3,7 +3,10 @@ import AppBar from '../AppBar';
 import { Outlet } from 'react-router-dom';
 import ConnectWalletDialog from '../ConnectWalletDialog';
 
-const Screen = () => {
+interface MyProps {
+  requiresWalletConnect?: boolean;
+}
+const Screen = ({ requiresWalletConnect = true }: MyProps) => {
   return (
     <Container //
       sx={{
@@ -13,7 +16,7 @@ const Screen = () => {
       maxWidth={false}
     >
       <AppBar />
-      <ConnectWalletDialog />
+      {requiresWalletConnect && <ConnectWalletDialog />}
       <Outlet />
     </Container>
   );
