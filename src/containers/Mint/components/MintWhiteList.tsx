@@ -3,6 +3,8 @@ import { Box, Button, Typography } from '@mui/material';
 import { colors } from '../../../theme';
 import MintButtonGroups from './MintButtonGroups';
 import Info from './Info';
+import { useParams } from 'react-router-dom';
+import { routeParams } from './MintMainContent';
 
 const styles = {
   containerBox: {
@@ -46,10 +48,13 @@ const MintWhiteList = ({
   handleAdd,
   handleRemove,
 }: MintWhiteListProps) => {
+  const routeParams = useParams() as routeParams;
+  const { tab } = routeParams;
+
   return (
     <Box sx={styles.containerBox}>
       <Typography variant="h3" component="div" gutterBottom>
-        Whitelist Mint
+        {tab === 'public' ? 'Public Mint' : 'Whitelist Mint'}
       </Typography>
       <Box sx={styles.flexRow}>
         <Box sx={styles.flexColumnAuto}>
@@ -87,13 +92,15 @@ const MintWhiteList = ({
           </Box>
         </Box>
       </Box>
-      <Box sx={styles.alert}>
-        <Info />
-        <Typography variant="h6" gutterBottom component="div" sx={{ fontSize: '18px', ml: '1rem' }}>
-          Your wallet address has been identified on the whitelist. Minting will use your whitelist allocation at the
-          whitelist mint price before minting at the public mint price.
-        </Typography>
-      </Box>
+      {tab !== 'public' && (
+        <Box sx={styles.alert}>
+          <Info />
+          <Typography variant="h6" gutterBottom component="div" sx={{ fontSize: '18px', ml: '1rem' }}>
+            Your wallet address has been identified on the whitelist. Minting will use your whitelist allocation at the
+            whitelist mint price before minting at the public mint price.
+          </Typography>
+        </Box>
+      )}
       <Box sx={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
         <Button sx={{ padding: '1.2rem 2.7rem', marginTop: '2rem' }} variant="contained">
           Mint Gym Junkie
