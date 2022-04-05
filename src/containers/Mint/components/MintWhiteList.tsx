@@ -103,7 +103,7 @@ const MintWhiteList = ({
       )}
       <Box sx={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
         <Button sx={{ padding: '1.2rem 2.7rem', marginTop: '2rem' }} variant="contained">
-          Mint Gym Junkie
+          Mint Gym Junkies
         </Button>
       </Box>
     </Box>

@@ -1,9 +1,10 @@
 import React from 'react';
-import { Box, Container, Typography } from '@mui/material';
+import { Container, Typography } from '@mui/material';
 import MintAlready from './MintedAlready';
 import MintWhiteList from './MintWhiteList';
 import { useParams } from 'react-router-dom';
 import MintNotReady from './MintNotReady';
+import MintSuccess from './MintSuccess';
 
 export type routeParams = {
   tab: string;
@@ -25,18 +26,27 @@ const MintMainContent = () => {
   return (
     <Container
       disableGutters
-      maxWidth="lg"
+      maxWidth={false}
       sx={{
         m: '1rem auto',
         display: 'flex',
         flexDirection: 'column',
+        maxWidth: '831px',
       }}
     >
-      <Typography variant="h1" component="div" gutterBottom>
-        Mint
-      </Typography>
+      {routeParams && tab === 'success' ? (
+        <Typography variant="h3" component="div" sx={{ mb: '32px' }}>
+          Minting <span style={{ color: 'green' }}>successful</span>!
+        </Typography>
+      ) : (
+        <Typography variant="h1" component="div" gutterBottom>
+          Mint
+        </Typography>
+      )}
       {routeParams && tab === 'not-ready' ? (
         <MintNotReady />
+      ) : tab === 'success' ? (
+        <MintSuccess />
       ) : (
         <>
           <MintAlready mintedNumber={mintedNumber} totalNumber={totalNumber} />
