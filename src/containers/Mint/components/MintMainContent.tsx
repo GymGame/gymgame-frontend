@@ -36,7 +36,19 @@ const MintMainContent = () => {
     >
       {routeParams && tab === 'success' ? (
         <Typography variant="h3" component="div" sx={{ mb: '32px' }}>
-          Minting <span style={{ color: 'green' }}>successful</span>!
+          Minting{' '}
+          <span
+            style={{
+              backgroundColor: '#9AFF2A',
+              backgroundImage: 'linear-gradient(45deg, #9AFF2A, #3BFF04)',
+              backgroundSize: '100%',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+            }}
+          >
+            successful
+          </span>
+          !
         </Typography>
       ) : (
         <Typography variant="h1" component="div" gutterBottom>
