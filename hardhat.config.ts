@@ -3,9 +3,12 @@ import '@nomiclabs/hardhat-ethers';
 import '@typechain/hardhat';
 
 const config: HardhatUserConfig = {
+  typechain: {
+    outDir: 'src/typechains',
+  },
   defaultNetwork: 'hardhat',
   solidity: {
-    compilers: [{ version: '0.8.0', settings: {} }],
+    compilers: [{ version: '0.8.10', settings: {} }],
   },
   networks: {
     avalanche: {
