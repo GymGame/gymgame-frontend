@@ -1,12 +1,8 @@
 import { Container } from '@mui/material';
 import AppBar from '../AppBar';
 import { Outlet } from 'react-router-dom';
-import ConnectWalletDialog from '../ConnectWalletDialog';
 
-interface MyProps {
-  requiresWalletConnect?: boolean;
-}
-const Screen = ({ requiresWalletConnect = true }: MyProps) => {
+const Screen = () => {
   return (
     <Container //
       sx={{
@@ -16,7 +12,6 @@ const Screen = ({ requiresWalletConnect = true }: MyProps) => {
       maxWidth={false}
     >
       <AppBar />
-      {requiresWalletConnect && <ConnectWalletDialog />}
       <Outlet />
     </Container>
   );
