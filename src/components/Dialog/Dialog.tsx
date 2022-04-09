@@ -8,7 +8,6 @@ import {
   DialogTitle,
   Typography,
 } from '@mui/material';
-
 interface MyProps {
   title: string;
   body: string;
@@ -16,17 +15,18 @@ interface MyProps {
   buttonProps?: {
     text: string;
     onClickHandler: () => void;
+    isLoading?: boolean;
   };
-  isLoading: boolean;
+  Icon?: React.ElementType;
 }
 
-const Dialog = ({ title, body, isOpen, buttonProps, isLoading }: MyProps) => {
+const Dialog = ({ title, body, isOpen, buttonProps, Icon }: MyProps) => {
   const renderDialogAction = () => {
     if (!buttonProps) {
       return null;
     }
 
-    const { onClickHandler, text } = buttonProps;
+    const { onClickHandler, text, isLoading } = buttonProps;
 
     if (isLoading) {
       return <CircularProgress size="4rem" thickness={2.5} sx={{ color: (theme) => theme.palette.text.primary }} />;
@@ -58,18 +58,29 @@ const Dialog = ({ title, body, isOpen, buttonProps, isLoading }: MyProps) => {
         },
       }}
     >
+      {Icon && (
+        <Icon
+          styles={{
+            width: '5rem',
+            height: '5rem',
+          }}
+        />
+      )}
       <DialogTitle
         sx={{
           textDecoration: 'uppercase',
           fontSize: '6rem', //96px
           fontFamily: 'Helvetica Pro Outlined',
           color: (theme) => theme.palette.text.tertiary,
+          pt: 0,
         }}
       >
         {title}
       </DialogTitle>
-      <DialogContent sx={{ mb: '1.5rem' }}>
-        <Typography variant="body1">{body}</Typography>
+      <DialogContent sx={{ mb: '1.5rem', width: '70%' }}>
+        <Typography sx={{ textAlign: 'center', color: (theme) => theme.palette.text.secondary }} variant="body1">
+          {body}
+        </Typography>
       </DialogContent>
       <DialogActions>{renderDialogAction()}</DialogActions>
     </MuiDialog>
