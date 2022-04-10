@@ -1,4 +1,5 @@
 import { InjectedConnector } from '@web3-react/injected-connector';
+import { intersection as _intersection } from 'lodash';
 
 export const RPC_URLS: { [chainId: number]: string } = {
   43114: process.env.AVAX_MAINNET_RPC_URL as string,
@@ -18,8 +19,10 @@ export const getSupportedChains = (): string[] => {
     );
   }
 
-  //union all available RPC_URLS and supported chain based on environment
-  return [...new Set([...Object.keys(RPC_URLS), ...supportedChains])];
+  //intersect all available RPC_URLS and supported chain based on environment
+  const support = _intersection(Object.keys(RPC_URLS), supportedChains);
+
+  return support;
 };
 
 export const injected = new InjectedConnector({
