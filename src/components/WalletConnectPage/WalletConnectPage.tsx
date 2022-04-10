@@ -3,7 +3,7 @@ import WalletErrorDialogsContainer from '../../containers/Error/WalletErrorDialo
 import useConnectWallet from '../../hooks/useConnectWallet';
 import useEagerConnect from '../../hooks/useEagerConnect';
 
-const WalletConnectPage: React.FC = ({ children }) => {
+const WalletConnectPage: React.FC<any> = ({ children }) => {
   const triedEagerConnect = useEagerConnect();
 
   useConnectWallet();

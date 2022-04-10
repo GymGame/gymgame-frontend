@@ -11,19 +11,18 @@ const AppContent = () => {
     <>
       <Container maxWidth={false}>
         <Grid container columnSpacing={10}>
-          <Grid item md={9} lg={10} justifyContent="center">
+          <Grid item md={9} lg={9} justifyContent="center">
             <MintMainContent />
           </Grid>
-          <Grid sx={{ display: 'flex', justifyContent: 'end' }} item sm={12} md={3} lg={2}>
-            {profile && profile.address && (
-              <WalletBalance //
-                styles={{ display: 'flex', flexDirection: 'column', alignSelf: 'start' }}
-                address={profile.address}
-                gainsBalance={profile.balances.gains}
-                proteinBalance={profile.balances.protein}
-                avaxBalance={profile.balances.avax}
-              />
-            )}
+          <Grid sx={{ display: 'flex', justifyContent: 'end' }} item sm={12} md={3} lg={3}>
+            <WalletBalance //
+              styles={{ display: 'flex', flexDirection: 'column', alignSelf: 'start' }}
+              address={profile.address}
+              gainsBalance={profile.balances.gains}
+              proteinBalance={profile.balances.protein}
+              avaxBalance={profile.balances.avax}
+              apiStatus={profile.status}
+            />
           </Grid>
         </Grid>
       </Container>

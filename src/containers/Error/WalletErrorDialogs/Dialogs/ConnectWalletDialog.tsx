@@ -5,7 +5,7 @@ import { pushGlobalError, GlobalErrorType } from '../../errorSlice';
 import { Web3Provider } from '@ethersproject/providers';
 import { injected } from '../../../../connectors';
 import Dialog from '../../../../components/Dialog';
-import { AvaxIcon } from '../../../../components/Icons';
+import { MetamaskIcon } from '../../../../components/Icons';
 
 const ConnectWalletDialog = () => {
   const globalErrors = useAppSelector((state) => state.globalErrors);
@@ -46,16 +46,25 @@ const ConnectWalletDialog = () => {
     });
   };
 
+  const onClickHandler = () => {
+    if (!hasMetamaskBrowserInstalled()) {
+      window.open('https://metamask.io/', '_blank');
+      return;
+    }
+
+    onConnectWallet();
+  };
+
   return (
     <Dialog
-      Icon={AvaxIcon}
+      Icon={<MetamaskIcon />}
       title="WALLET REQUIRED"
       body="You need to connect your wallet to enter GymGame"
       isOpen={isOpen}
       buttonProps={{
         isLoading: isLoading,
         text: hasMetamaskBrowserInstalled() ? 'Connect Wallet' : 'Get MetaMask',
-        onClickHandler: onConnectWallet,
+        onClickHandler: onClickHandler,
       }}
     />
   );

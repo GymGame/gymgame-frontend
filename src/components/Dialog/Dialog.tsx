@@ -17,7 +17,7 @@ interface MyProps {
     onClickHandler: () => void;
     isLoading?: boolean;
   };
-  Icon?: React.ElementType;
+  Icon?: React.ReactElement;
 }
 
 const Dialog = ({ title, body, isOpen, buttonProps, Icon }: MyProps) => {
@@ -58,14 +58,16 @@ const Dialog = ({ title, body, isOpen, buttonProps, Icon }: MyProps) => {
         },
       }}
     >
-      {Icon && (
-        <Icon
-          styles={{
+      {Icon &&
+        // <Icon
+
+        // />
+        React.cloneElement(Icon, {
+          styles: {
             width: '5rem',
             height: '5rem',
-          }}
-        />
-      )}
+          },
+        })}
       <DialogTitle
         sx={{
           textDecoration: 'uppercase',

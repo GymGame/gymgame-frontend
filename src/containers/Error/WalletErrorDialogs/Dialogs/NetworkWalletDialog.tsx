@@ -11,7 +11,7 @@ const NetworkWalletDialog = () => {
 
   return (
     <Dialog //
-      Icon={AvaxIcon}
+      Icon={<AvaxIcon />}
       title="WRONG NETWORK"
       body="You need to change to the Avalanche network to enter GymGame"
       isOpen={isOpen}

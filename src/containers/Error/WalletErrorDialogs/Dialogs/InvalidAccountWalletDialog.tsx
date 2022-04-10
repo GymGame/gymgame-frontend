@@ -11,7 +11,7 @@ const NetworkWalletDialog = () => {
 
   return (
     <Dialog
-      Icon={AvaxIcon}
+      Icon={<AvaxIcon />}
       title="WRONG ADDRESS"
       body="You're currently using a different address from the one you connected with. Please disconnect prior to changing accounts."
       isOpen={isOpen}
