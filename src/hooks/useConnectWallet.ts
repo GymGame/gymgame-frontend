@@ -1,12 +1,12 @@
 import { useWeb3React } from '@web3-react/core';
 import React from 'react';
 import { useAppDispatch, useAppSelector } from '.';
-import { SUPPORTED_CHAIN_IDS } from '../connectors';
+import { ChainIds, getSupportedChains } from '../connectors';
 import { removeGlobalError, pushGlobalError, GlobalErrorType } from '../containers/Error/errorSlice';
-import { setActiveProfile } from '../slices/profileSlice';
+import { loadAccountDetails } from '../slices/profileSlice';
 
 const useConnectWallet = () => {
-  const { connector, active, account, chainId } = useWeb3React();
+  const { connector, active, account, chainId, library } = useWeb3React();
   const errors = useAppSelector((store) => store.globalErrors.errors);
   const profile = useAppSelector((store) => store.profile);
   const dispatch = useAppDispatch();
@@ -18,7 +18,8 @@ const useConnectWallet = () => {
       connector &&
       active &&
       account &&
-      chainId
+      chainId &&
+      library
     ) {
       //Dont set profile if user has changed their address while logged in
       if (profile.address && profile.address !== account) {
@@ -26,18 +27,15 @@ const useConnectWallet = () => {
       }
 
       dispatch(
-        setActiveProfile({
+        loadAccountDetails({
+          //
+          provider: library,
           address: account,
-          chainId,
-          balances: {
-            avax: 10,
-            gains: 10,
-            protein: 10,
-          },
+          chainId: chainId as ChainIds,
         }),
       );
     }
-  }, [connector, active, account, chainId, profile]);
+  }, [connector, active, account, chainId, library]);
 
   React.useEffect(() => {
     if (!connector) {
@@ -56,7 +54,7 @@ const useConnectWallet = () => {
   }, [account]);
 
   const supportedChainCheck = (chainId: string | number | undefined) => {
-    if (!SUPPORTED_CHAIN_IDS.includes(Number(chainId).toString())) {
+    if (!getSupportedChains().includes(Number(chainId).toString())) {
       dispatch(
         pushGlobalError({
           type: GlobalErrorType.UnsupportedChain,

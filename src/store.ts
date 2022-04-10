@@ -8,7 +8,7 @@ export const store = configureStore({
     profile: profileReducer,
   },
   devTools: process.env.NODE_ENV === 'development',
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware({ serializableCheck: false }),
 });
 
 export type AppDispatch = typeof store.dispatch;

@@ -4,10 +4,8 @@ import RouterLink from '../RouterLink';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Web3Provider } from '@ethersproject/providers';
 import { useWeb3React } from '@web3-react/core';
-
 import { useAppDispatch, useAppSelector } from '../../hooks';
-
-import { setActiveProfile } from '../../slices/profileSlice';
+import { resetProfile } from '../../slices/profileSlice';
 
 const AppBar = () => {
   const navigate = useNavigate();
@@ -39,17 +37,7 @@ const AppBar = () => {
     }
 
     if (address) {
-      dispatch(
-        setActiveProfile({
-          address: undefined,
-          chainId: undefined,
-          balances: {
-            avax: 0,
-            gains: 0,
-            protein: 0,
-          },
-        }),
-      );
+      dispatch(resetProfile());
 
       return deactivate();
     }
