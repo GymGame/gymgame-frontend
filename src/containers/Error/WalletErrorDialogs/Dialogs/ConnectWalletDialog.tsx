@@ -8,28 +8,24 @@ import Dialog from '../../../../components/Dialog';
 import { MetamaskIcon } from '../../../../components/Icons';
 
 const ConnectWalletDialog = () => {
+  const { activate } = useWeb3React<Web3Provider>();
   const globalErrors = useAppSelector((state) => state.globalErrors);
+  const dispatch = useAppDispatch();
 
   const isOpen = globalErrors.errors.some((error) => error.type === GlobalErrorType.WalletNotConencted);
 
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
 
-  const { address } = useAppSelector((state) => state.profile);
-
   const hasMetamaskBrowserInstalled = () => {
     return Boolean((window as any).ethereum);
   };
 
-  const context = useWeb3React<Web3Provider>();
-  const { activate } = context;
-  const dispatch = useAppDispatch();
-
-  //If address is defined, then we can close the connect wallet dialog
+  //Everytime dialog is open, we clear loading in case loading state was still true from last action
   React.useEffect(() => {
-    if (address) {
+    if (isOpen && isLoading) {
       setIsLoading(false);
     }
-  }, [address]);
+  }, [isOpen]);
 
   const onConnectWallet = () => {
     setIsLoading(true);
