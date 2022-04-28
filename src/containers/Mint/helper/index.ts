@@ -14,3 +14,15 @@ export const convertNumberToString = (num: number): string => {
 
   return resString;
 };
+
+export const calculateNFTGeneration = (avaxMintStarted: boolean, gainsMintStarted: boolean): number => {
+  if (!avaxMintStarted) {
+    return -1;
+  }
+
+  if (avaxMintStarted && !gainsMintStarted) {
+    return 0;
+  }
+
+  return 1;
+};

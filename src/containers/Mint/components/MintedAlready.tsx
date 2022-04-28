@@ -1,11 +1,12 @@
 import React from 'react';
-import { Box, LinearProgress, Typography } from '@mui/material';
+import { Box, LinearProgress, Skeleton, Typography } from '@mui/material';
 import { convertNumberToString } from '../helper';
 import { colors } from '../../../theme';
 
 export type MintAlreadyProps = {
   mintedNumber: number;
   totalNumber?: number;
+  isLoading: boolean;
 };
 
 const styles = {
@@ -23,21 +24,32 @@ const styles = {
   },
 };
 
-const MintAlready = ({ mintedNumber = 0, totalNumber = 10000 }: MintAlreadyProps) => {
+const MintAlready = ({ mintedNumber = 0, totalNumber = 10000, isLoading }: MintAlreadyProps) => {
   return (
     <Box sx={styles.containerBox}>
-      <Typography variant="h5" component="div" sx={styles.typographyOne}>
-        Number of Gen0 Gym Junkies already minted
-      </Typography>
-      <Typography variant="h6" component="div" sx={styles.typographyTwo}>
-        <span style={{ color: '#ffffff' }}>{convertNumberToString(mintedNumber)}</span>/
-        <span>{convertNumberToString(totalNumber)}</span>
-      </Typography>
-      <LinearProgress
-        variant="determinate"
-        value={Math.round((mintedNumber / totalNumber) * 100)}
-        sx={styles.progessBar}
-      />
+      {isLoading ? (
+        <>
+          <Skeleton animation="wave" height={40} />
+          <Skeleton animation="wave" height={30} />
+          <Skeleton animation="wave" height={30} />
+          <Skeleton animation="wave" height={30} />
+        </>
+      ) : (
+        <>
+          <Typography variant="h5" component="div" sx={styles.typographyOne}>
+            Number of Gen0 Gym Junkies already minted
+          </Typography>
+          <Typography variant="h6" component="div" sx={styles.typographyTwo}>
+            <span style={{ color: '#ffffff' }}>{convertNumberToString(mintedNumber)}</span>/
+            <span>{convertNumberToString(totalNumber)}</span>
+          </Typography>
+          <LinearProgress
+            variant="determinate"
+            value={Math.round((mintedNumber / totalNumber) * 100)}
+            sx={styles.progessBar}
+          />
+        </>
+      )}
     </Box>
   );
 };

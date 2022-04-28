@@ -9,6 +9,12 @@ export type MintButtonGroupsProps = {
   initialNumber: number;
   handleAdd: () => void;
   handleRemove: () => void;
+  disableAdd: boolean;
+  disableRemove: boolean;
+};
+
+type ButtonCommonOptions = {
+  disabled?: boolean;
 };
 
 const styles = {
@@ -29,14 +35,17 @@ const styles = {
     ml: '1rem',
     justifyContent: 'space-between',
   },
-  buttonCommon: {
+  buttonCommon: (options: ButtonCommonOptions = { disabled: false }) => ({
     backgroundColor: '#2a2a2a',
     color: '#ffffff',
     border: 'solid 2px #5b5b5b',
     borderRadius: '8px',
     padding: 0,
     minWidth: 0,
-  },
+    '& svg': {
+      color: options.disabled ? colors.grey_5 : '#fff',
+    },
+  }),
   buttonLarge: {
     fontSize: '5vw',
   },
@@ -66,7 +75,13 @@ const iconWrapper = (icon: typeof SvgIcon) => {
 const AddIconWrapper = iconWrapper(AddIcon);
 const RemoveIconWrapper = iconWrapper(RemoveIcon);
 
-const MintButtonGroups = ({ initialNumber, handleAdd, handleRemove }: MintButtonGroupsProps) => {
+const MintButtonGroups = ({
+  initialNumber,
+  handleAdd,
+  handleRemove,
+  disableAdd,
+  disableRemove,
+}: MintButtonGroupsProps) => {
   return (
     <Box sx={styles.flexRow}>
       <Box
@@ -77,7 +92,7 @@ const MintButtonGroups = ({ initialNumber, handleAdd, handleRemove }: MintButton
       >
         <Button
           sx={{
-            ...styles.buttonCommon,
+            ...styles.buttonCommon(),
             ...styles.buttonAbsolute,
             ...styles.buttonLarge,
           }}
@@ -93,8 +108,9 @@ const MintButtonGroups = ({ initialNumber, handleAdd, handleRemove }: MintButton
           }}
         >
           <Button
+            disabled={disableAdd}
             sx={{
-              ...styles.buttonCommon,
+              ...styles.buttonCommon({ disabled: disableAdd }),
               ...styles.buttonAbsolute,
             }}
           >
@@ -108,8 +124,9 @@ const MintButtonGroups = ({ initialNumber, handleAdd, handleRemove }: MintButton
           }}
         >
           <Button
+            disabled={disableRemove}
             sx={{
-              ...styles.buttonCommon,
+              ...styles.buttonCommon({ disabled: disableRemove }),
               ...styles.buttonAbsolute,
             }}
           >
