@@ -1,8 +1,8 @@
 import React from 'react';
-import { styled } from '@mui/material/styles';
+import { CSSObject, styled } from '@mui/material/styles';
 
 type MyProps = {
-  styles?: React.CSSProperties;
+  styles?: CSSObject;
   imageName: string;
   altText: string;
 };

@@ -1,13 +1,14 @@
 import React from 'react';
-import { Box, Button, Container, Paper, Typography } from '@mui/material';
+import { Box, IconButton, Button, Container, Paper, Typography } from '@mui/material';
 import CarouselBackgroundSvg from '../../../assets/svgs/carouselBg.svg';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import { Navigation } from 'swiper';
-import 'swiper/css/navigation';
-import Image from '../../../components/Image';
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import Title from '../../../components/Title';
+import JunkieSliderContent from './JunkieSliderContent';
 
 const MeetTheGymJunkieSection = () => {
   return (
@@ -27,111 +28,114 @@ const MeetTheGymJunkieSection = () => {
           magna aliqua.
         </Typography>
       </Box>
-      <Paper
-        sx={{
-          background: `url(${CarouselBackgroundSvg}) no-repeat center/cover`,
-          height: '34rem',
-          width: '55rem',
-        }}
-      >
-        <Swiper //
-          navigation={true}
-          modules={[Navigation]}
-          slidesPerView={1}
-          spaceBetween={30}
-          loop={true}
-          style={{
-            padding: '2.3rem',
-            height: '100%',
-            display: 'flex',
+      <Box sx={{ display: 'flex', alignItems: 'center' }}>
+        <IconButton
+          sx={{
+            height: '3.5rem',
+            width: '3.5rem',
+            mr: '1rem',
+            backgroundColor: (theme) => theme.palette.background.paper,
+          }}
+          className="swiper-button-prev"
+        >
+          <ArrowBackIosNewIcon sx={{ color: (theme) => theme.palette.text.primary }} fontSize="small" />
+        </IconButton>
+        <Paper
+          sx={{
+            background: `url(${CarouselBackgroundSvg}) no-repeat center/cover`,
+            height: '34rem',
+            width: '55rem',
           }}
         >
-          <SwiperSlide
+          <Swiper //
+            navigation={{
+              prevEl: '.swiper-button-prev',
+              nextEl: '.swiper-button-next',
+            }}
+            modules={[Navigation]}
+            slidesPerView={1}
+            spaceBetween={30}
+            loop={true}
             style={{
+              padding: '2.3rem 1.3rem 2.3rem 2.3rem',
               height: '100%',
               display: 'flex',
-              alignItems: 'center',
             }}
           >
-            <Image
-              styles={{
-                width: '70%',
-                height: 'auto',
+            <SwiperSlide
+              style={{
+                height: '100%',
+                display: 'flex',
+                alignItems: 'start',
+                cursor: 'grab',
               }}
-              imageName="hero-icon"
-              altText="Hero Icon Image"
-            />
-            <Box>
-              <Typography variant="h3">#1000</Typography>
-              <Typography variant="body1">Skin: Light</Typography>
-              <Typography variant="body1">Hat: Blah</Typography>
-              <Typography variant="body1">Eyes: Blah</Typography>
-              <Typography variant="body1">Shirt: Blah</Typography>
-              <br />
-              <Typography variant="body1">Strength: 94</Typography>
-              <Typography variant="body1">Endurance: 40</Typography>
-              <Typography variant="body1">Agility: 88</Typography>
-              <Typography variant="body1">Weight: 110kg / 242 lbs</Typography>
-            </Box>
-          </SwiperSlide>
-          <SwiperSlide
-            style={{
-              height: '100%',
-              display: 'flex',
-              alignItems: 'center',
-            }}
-          >
-            <Image
-              styles={{
-                width: '70%',
-                height: 'auto',
+            >
+              <JunkieSliderContent //
+                title="#1000"
+                skin="Light"
+                hat="Blah"
+                eyes="Blah"
+                shirt="Blah"
+                strength="94"
+                endurance="40"
+                agility="88"
+                weight="110kg / 242 lbs"
+              />
+            </SwiperSlide>
+            <SwiperSlide
+              style={{
+                height: '100%',
+                display: 'flex',
+                alignItems: 'start',
+                cursor: 'grab',
               }}
-              imageName="hero-icon"
-              altText="Hero Icon Image"
-            />
-            <Box>
-              <Typography variant="h3">#2000</Typography>
-              <Typography variant="body1">Skin: Light</Typography>
-              <Typography variant="body1">Hat: Blah</Typography>
-              <Typography variant="body1">Eyes: Blah</Typography>
-              <Typography variant="body1">Shirt: Blah</Typography>
-              <br />
-              <Typography variant="body1">Strength: 94</Typography>
-              <Typography variant="body1">Endurance: 40</Typography>
-              <Typography variant="body1">Agility: 88</Typography>
-              <Typography variant="body1">Weight: 110kg / 242 lbs</Typography>
-            </Box>
-          </SwiperSlide>
-          <SwiperSlide
-            style={{
-              height: '100%',
-              display: 'flex',
-              alignItems: 'center',
-            }}
-          >
-            <Image
-              styles={{
-                width: '70%',
-                height: 'auto',
+            >
+              <JunkieSliderContent //
+                title="#2000"
+                skin="Light"
+                hat="Blah"
+                eyes="Blah"
+                shirt="Blah"
+                strength="94"
+                endurance="40"
+                agility="88"
+                weight="110kg / 242 lbs"
+              />
+            </SwiperSlide>
+            <SwiperSlide
+              style={{
+                height: '100%',
+                display: 'flex',
+                alignItems: 'start',
+                cursor: 'grab',
               }}
-              imageName="hero-icon"
-              altText="Hero Icon Image"
-            />
-            <Box>
-              <Typography variant="h3">#3000</Typography>
-              <Typography variant="body1">Skin: Light</Typography>
-              <Typography variant="body1">Hat: Blah</Typography>
-              <Typography variant="body1">Eyes: Blah</Typography>
-              <Typography variant="body1">Shirt: Blah</Typography>
-              <br />
-              <Typography variant="body1">Strength: 94</Typography>
-              <Typography variant="body1">Endurance: 40</Typography>
-              <Typography variant="body1">Agility: 88</Typography>
-              <Typography variant="body1">Weight: 110kg / 242 lbs</Typography>
-            </Box>
-          </SwiperSlide>
-        </Swiper>
-      </Paper>
+            >
+              <JunkieSliderContent //
+                title="#3000"
+                skin="Light"
+                hat="Blah"
+                eyes="Blah"
+                shirt="Blah"
+                strength="94"
+                endurance="40"
+                agility="88"
+                weight="110kg / 242 lbs"
+              />
+            </SwiperSlide>
+          </Swiper>
+        </Paper>
+        <IconButton
+          sx={{
+            height: '3.5rem',
+            width: '3.5rem',
+            ml: '1rem',
+            backgroundColor: (theme) => theme.palette.background.paper,
+          }}
+          className="swiper-button-next"
+        >
+          <ArrowForwardIosIcon sx={{ color: (theme) => theme.palette.text.primary }} fontSize="small" />
+        </IconButton>
+      </Box>
       <Button sx={{ padding: '1.2rem 2.7rem', marginTop: '2rem' }} variant="contained">
         Mint Gym Junkie <ArrowForwardIcon sx={{ marginLeft: '.5rem' }} />
       </Button>

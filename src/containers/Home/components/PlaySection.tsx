@@ -40,7 +40,9 @@ const PlaySection = () => {
             styles={{
               width: '10rem',
               height: '10rem',
-              marginBottom: '1rem',
+              marginBottom: '2rem',
+              background: 'linear-gradient(to bottom, #0ff 0%, #2f8fff 50%, #8349ff 100%)',
+              borderRadius: '1rem',
             }}
             imageName="hero-icon"
             altText="Hero Icon Image"
