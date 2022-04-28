@@ -1,26 +1,70 @@
 import React from 'react';
 import { Container, Typography } from '@mui/material';
 import MintAlready from './MintedAlready';
-import MintWhiteList from './MintWhiteList';
+import MintForm from './MintForm';
 import { useParams } from 'react-router-dom';
 import MintNotReady from './MintNotReady';
 import MintSuccess from './MintSuccess';
+import { ApiStatus } from '../../../constants';
 
 export type routeParams = {
   tab: string;
 };
 
-const MintMainContent = () => {
-  const [amount, setAmount] = React.useState<number>(3); // fetch from BE
+type MyProps = {
+  whiteList?: {
+    price: string;
+    userClaimableWhiteListNFTs: number;
+  };
+  price: string;
+  nftsLimit: number;
+  nftsMinted: number;
+  status: ApiStatus;
+  mintGeneration: number;
+};
+
+const MintMainContent = ({ status, whiteList, price, nftsLimit, nftsMinted, mintGeneration }: MyProps) => {
+  const hasWhitelistNFTsToClaim = Boolean(whiteList?.userClaimableWhiteListNFTs);
+
+  const nftPrice = hasWhitelistNFTsToClaim ? Number.parseFloat(whiteList!.price) : Number.parseFloat(price);
+
+  const [amount, setAmount] = React.useState<number>(0);
+
+  const isLoading = status === ApiStatus.Idle || status === ApiStatus.Pending;
+
+  React.useEffect(() => {
+    if (status === ApiStatus.Resolved) {
+      if (hasWhitelistNFTsToClaim) {
+        setAmount(whiteList!.userClaimableWhiteListNFTs);
+        return;
+      }
+
+      setAmount(1);
+    }
+  }, [status]);
+
   const routeParams = useParams() as routeParams;
   const { tab } = routeParams;
 
-  const mintedNumber = 4322; // fetch from BE
-  const totalNumber = 10000; // fetch from BE
-  const singlePrice = tab === 'public' ? 3.5 : 2.5; // fetch from BE
-  const handleAdd = () => setAmount(amount + 1);
+  const handleAdd = () => {
+    setAmount(amount + 1);
+  };
+
   const handleRemove = () => {
     if (amount > 0) setAmount(amount - 1);
+  };
+
+  const toDisableAddButton = () => {
+    const hasHitMintedLimit = amount + nftsMinted >= nftsLimit;
+    if (hasWhitelistNFTsToClaim) {
+      return amount >= whiteList!.userClaimableWhiteListNFTs || hasHitMintedLimit;
+    }
+
+    return hasHitMintedLimit;
+  };
+
+  const toDisableRemoveButton = () => {
+    return amount <= 0;
   };
 
   return (
@@ -55,19 +99,23 @@ const MintMainContent = () => {
           Mint
         </Typography>
       )}
-      {routeParams && tab === 'not-ready' ? (
+      {mintGeneration === -1 ? (
         <MintNotReady />
       ) : tab === 'success' ? (
         <MintSuccess />
       ) : (
         <>
-          <MintAlready mintedNumber={mintedNumber} totalNumber={totalNumber} />
-          <MintWhiteList
-            totalPrice={singlePrice * amount}
-            singlePrice={singlePrice}
+          <MintAlready mintedNumber={nftsMinted} totalNumber={nftsLimit} isLoading={isLoading} />
+          <MintForm
+            isOnWhiteList={hasWhitelistNFTsToClaim}
+            isLoading={isLoading}
+            totalPrice={nftPrice * amount}
+            singlePrice={nftPrice}
             initialNumber={amount}
             handleAdd={handleAdd}
             handleRemove={handleRemove}
+            disableAdd={toDisableAddButton()}
+            disableRemove={toDisableRemoveButton()}
           />
         </>
       )}

@@ -6,10 +6,11 @@ import { Gains__factory } from '../typechains/factories/Gains__factory';
 
 import { Gains } from '../typechains';
 import { BigNumber } from 'ethers';
+import { ChainIds } from '../connectors';
 
-interface ProfileState {
+export interface ProfileState {
   address?: string;
-  chainId?: number;
+  chainId?: ChainIds;
   balances: {
     avax: string;
     protein: string;
@@ -73,7 +74,7 @@ const profileSlice = createSlice({
 export const loadAccountDetails = createAsyncThunk(
   //
   'profile/loadAccountDetails',
-  async ({ provider, address, chainId }: IBaseAddressAsyncThunk) => {
+  async ({ provider, address, chainId }: IBaseAddressAsyncThunk): Promise<SetActiveProfilePayload> => {
     const signer = provider.getSigner();
 
     const gainsContract = new ethers.Contract(
